@@ -43,29 +43,7 @@
 <br><br><br>
 <body>
     <h1 align="center"> <u>Actualités</u> </h1><br><br>
-    <div class="container">
-        <div class="row">
-      {% for post in posts %}
-          <div class="col-md-4">
-            <div class="card" style="width: 18rem;">
-              <img src="{{post.thumbnail.url}}" class="card-img-top" alt="">
-              <div class="card-body">
-                <h5 class="card-title">{{post.title}}</h5>
-                <p class="card-text">{{post.text|slice:":100"}}</p>
-                <p class="card-text text-bg-success"><b>{{post.author}}</b></p>
-              </div>
-            </div>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="btn btn-primary me-md-2" type="button">Modifier</button>
-              <button class="btn btn-primary" type="button">Supprimer</button>
-            </div>
-          </div>
       
-      {% endfor %}
-        </div>
-    </div>
-    <br><br>
-    
 <h1 align="center"> Ajoutez une actualité </h1>
 <div class="container-fluid"  id="formActu">
   <form method="Post" action="{% url 'getNews' %}" enctype="multipart/form-data">

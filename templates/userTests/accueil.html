@@ -24,7 +24,9 @@
       <nav>
           <ul>
               <li><a href="#"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {% if user.is_authenticated %}
               <li> <a href="news"> Actualités </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {% endif %}
               <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li> <a href="#"> Nous contacter </a></li>
@@ -84,7 +86,7 @@
             <input class="form-control form-control-lg mr-sm-2" type="search" id="tab"
             placeholder="Rechercher une association par mots clés" 
             aria-label="Rechercher" name="search">
-            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" id="butonSearch">Rechercher</button>
+            <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" id="butonSearch">Rechercher <i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
           </form>
         </div>
 </div>
@@ -96,9 +98,9 @@
   <div class="row">
 {% for assoss in assos %}
     <div class="col-md-4">
-      <div class="card">
+      <div class="card border-danger-subtle shadow">
         <div class="card-body">
-          <h2 class="card-title text-bg-danger"> {{assoss.user}} </h2>
+          <h2 class="card-title text-bg-danger text-uppercase"> {{assoss.user}} </h2>
           <p class="card-text"> <u>Email: </u> {{assoss.email}}</p>
           <p class="card-text"> <u>Numero:</u>  {{assoss.numero}}</p>
           <p class="card-text"> <u>Address:</u>  {{assoss.address}}</p>
@@ -107,6 +109,7 @@
           <p class="card-text"><b> <u>Autres activités:</u> </b>{{assoss.activiteThird|join:", "}}</p>
         </div>  
       </div>
+      <br>
     </div>
     <br><br>
 {% endfor %}
@@ -159,24 +162,32 @@ $(document).ready(function() {
 <div class="container">
   <div class="row">
 {% for post in posts %}
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img src="{{post.thumbnail.url}}" class="card-img-top" alt="">
-        <div class="card-body">
-          <h5 class="card-title">{{post.title}}</h5>
-          <p class="card-text">{{post.text|slice:":80"}}</p>
-          <p class="card-text text-bg-success"><b>{{post.author}}</b></p>
-        </div>  
-        {% if user.is_authenticated and post.author == user %}
-        <a href="update/{{post.id}}" class="btn btn-outline-danger" id="{{posts.id}}">Modifier</a>
-        <a href="actu_delete/{{post.id}}" class="btn btn-outline-danger" id="{{posts.id}}">Supprimer</a>
-        {% endif %}
+<div class="col-md-4">
+  <div class="card border-info-subtle shadow-sm" id="carte">
+    <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{post.title}}" style="width: 400px; height: 200px;">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <p class="card-text">{{ post.text|slice:":80"|linebreaksbr }}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          {% if user.is_authenticated and post.author == user %}
+          <a href="update/{{ post.id }}" class="btn btn-sm btn-outline-info">Modifier <i class="fa-solid fa-pencil"></i></a>&nbsp;
+          <a href="actu_delete/{{ post.id }}" class="btn btn-sm btn-outline-warning">Supprimer <i class="fa-solid fa-trash"></i></a>
+          {% endif %}
+        </div>
       </div>
     </div>
-{% endfor %}
-
+    <div class="card-footer bg-transparent border-top d-flex justify-content-between align-items-center">
+      <p class="text-danger mb-0"><b>{{ post.author }}</b></p>
+      <small class="text-muted">{{ post.published_date }}</small>
+    </div>
   </div>
 </div>
+<br><br><br>
+{% endfor %}
+  </div>
+</div>
+
 <br><br><br>
 <h2 id="text2">A propos de Notre Equipe</h2>
   <div class="container" id="teamBg">

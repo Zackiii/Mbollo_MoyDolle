@@ -187,7 +187,7 @@ def update(request, post_id):
 
     return render(request, 'userTests/updateActu.html', context)
 
-
+#update actu
 @login_required(login_url='/user_login')
 def updateActu(request, post_id):
     post_id = int(post_id)
@@ -196,8 +196,10 @@ def updateActu(request, post_id):
     if request.method == 'POST':
         title = request.POST['titre']
         text = request.POST['text']
+        thumbnail = request.FILES['thumbnail']
         posts.title = title
         posts.text = text
+        posts.thumbnail = thumbnail
         posts.save()
         return redirect('accueil')
 

@@ -43,23 +43,23 @@
  
   <center>  <h1>Modifier l'actualite</h1></center>
   {% block content %}
-    <div class="container" id="loginForm">
-        <form method="POST" action=" {% url 'updateActu' posts.id %}" id="secondForm">
+    <div class="container" id="loginForm" >
+        <form method="POST" action=" {% url 'updateActu' posts.id %}" id="secondForm" enctype="multipart/form-data">
 
             {% csrf_token %}
             
-          <div class="row g-3">
+          <div class="row g-3" style="height: 510px;">
              <div class="col">
-                <label for="exampleFormControlTextarea1" class="form-label"> <b>Image(s)</b> </label>
-                <input type="text" class="form-control" aria-label="image" value="{{post.thumbnail}}">
+                <label for="exampleFormControlTextarea1" class="form-label"> <b>Modifier image <i class="fa-solid fa-pencil"></i></b> </label>
+               <img src="{{posts.thumbnail.url}}" alt="" style="width: 280px; height: 200px;"><input type="file" name="thumbnail">
               </div>
             <div class="col">
               <label for="exampleFormControlTextarea1" class="form-label"> <b>Titre</b> </label>
               <input type="text" class="form-control" aria-label="titre" name="titre" value="{{posts.title}}">
           </div><br><br>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label"> <b>Text</b> </label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3"> {{posts.text}}</textarea>
+            <label for="exampleFormControlTextarea1" class="form-label"> <b>Text</b></label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3">{{posts.text}}</textarea>
           </div><br><br><br>
           <div class="col-12" id="buton2">
             <button type="submit" class="btn"> <b>Modifier</b>  <i class="fa-sharp fa-solid fa-paper-plane-top"></i></button>
