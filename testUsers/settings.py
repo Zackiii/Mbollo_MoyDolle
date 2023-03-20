@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 import os
 from pathlib import Path
-import dj_database_url
 
 
 
