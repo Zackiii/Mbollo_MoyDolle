@@ -12,15 +12,12 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 import os
 from pathlib import Path
-import environ
 import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
-environ.Env.read.env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -82,25 +79,25 @@ TEMPLATES = [
 WSGI_APPLICATION = "testUsers.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+#Database
+#https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'mbolo',
-#         'USER': 'postgres',
-#         'PASSWORD': 'admin',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mbolo',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
  
-DATABASES = {
+# DATABASES = {
 
-    'default':dj_database_url.parse(env('DATABASE_URL'))
-}
+#     'default':dj_database_url.parse(env('DATABASE_URL'))
+# }
 
 
 # Password validation
