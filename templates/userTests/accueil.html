@@ -97,6 +97,7 @@
 <div class="container">
   <div class="row">
 {% for assoss in assos %}
+
     <div class="col-md-4">
       <div class="card border-danger-subtle shadow">
         <div class="card-body">
@@ -111,10 +112,16 @@
       </div>
       <br>
     </div>
-    <br><br>
 {% endfor %}
-
   </div>
+  <br>
+  {% if assos|length > 6 %}
+  <div class="row">
+    <div class="col-md-12 text-center border-danger-subtle">
+      <a href="#">Voir tous les association</a>
+    </div>
+  </div>
+{% endif %}
 </div>
 
 <br><br>
@@ -182,10 +189,18 @@ $(document).ready(function() {
       <small class="text-muted">{{ post.published_date }}</small>
     </div>
   </div>
+  <br>
 </div>
-<br><br><br>
 {% endfor %}
   </div>
+  <br>
+  {% if assos|length > 6 %}
+  <div class="row border-danger" >
+    <div class="col-md-12 text-center">
+      <a href="#">Voir plus d'Actualités</a>
+    </div>
+  </div>
+{% endif %}
 </div>
 
 <br><br><br>

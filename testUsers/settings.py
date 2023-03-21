@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 import os
 from pathlib import Path
-import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,8 +78,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "testUsers.wsgi.application"
 
 
-#Database
-#https://docs.djangoproject.com/en/dev/ref/settings/#databases
+# Database
+# https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -93,7 +92,7 @@ DATABASES = {
     }
 }
 
- 
+
 # DATABASES = {
 
 #     'default':dj_database_url.parse(env('DATABASE_URL'))
