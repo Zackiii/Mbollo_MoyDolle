@@ -173,7 +173,12 @@ $(document).ready(function() {
     <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{post.title}}" style="width: 400px; height: 200px;">
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
-      <p class="card-text">{{ post.text|slice:":80"|linebreaksbr }}</p>
+      <p class="card-text">{{ post.text|slice:":130"|linebreaksbr }} ....</p>
+      <div class="card-read-more justify-content-center">
+        <a href="{% url 'post_details' post.id %}" class="btn btn-link btn-block">
+            Read More
+        </a>
+    </div>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
           {% if user.is_authenticated and post.author == user %}
@@ -187,11 +192,6 @@ $(document).ready(function() {
       <p class="text-danger mb-0"><b>{{ post.author }}</b></p>
       <small class="text-muted">{{ post.published_date }}</small>
     </div>
-    <div class="card-read-more alig tex">
-      <a href="{% url 'post_details' post.id %}" class="btn btn-link btn-block">
-          Read More
-      </a>
-  </div>
   </div>
   <br>
 </div>
