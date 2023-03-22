@@ -173,12 +173,11 @@ $(document).ready(function() {
     <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{post.title}}" style="width: 100%; height: 200px;">
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
-      <p class="card-text">{{ post.text|slice:":130"|linebreaksbr }} ....</p>
-      <div class="card-read-more justify-content-center">
+      <p class="card-text">{{ post.text|slice:":130"|linebreaksbr }} .... 
         <a href="{% url 'post_details' post.id %}" class="btn btn-link btn-block">
-            Read More
-        </a>
-    </div>
+          Read More
+      </a>
+      </p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
           {% if user.is_authenticated and post.author == user %}
