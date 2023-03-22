@@ -198,7 +198,9 @@ def updateActu(request, post_id):
     if request.method == 'POST':
         title = request.POST['titre']
         text = request.POST['text']
-        thumbnail = request.FILES['thumbnail']
+        thumbnail = posts.thumbnail
+        if 'thumbnail' in request.FILES:
+            thumbnail = request.FILES['thumbnail']
         posts.title = title
         posts.text = text
         posts.thumbnail = thumbnail
@@ -236,9 +238,8 @@ def searchEtiquette(request):
 
 def post_detail(request, post_id):
     post_id = int(post_id)
-    posts = Post.objects.get(id=post_id)
-    posts = Post.objects.all()
+    post = Post.objects.get(id=post_id)
     context = {
-        'posts': posts,
+        'post': post,
     }
     return render(request, 'userTests/post_details.html', context)
