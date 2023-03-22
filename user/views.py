@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from .models import Association
 from actualite.models import Post
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Case, When, Value, CharField
@@ -187,7 +187,9 @@ def update(request, post_id):
 
     return render(request, 'userTests/updateActu.html', context)
 
-#update actu
+# update actu
+
+
 @login_required(login_url='/user_login')
 def updateActu(request, post_id):
     post_id = int(post_id)
@@ -230,3 +232,13 @@ def searchEtiquette(request):
         'result': result
     }
     return render(request, 'userTests/searchView.html', context)
+
+
+def post_detail(request, post_id):
+    post_id = int(post_id)
+    posts = Post.objects.get(id=post_id)
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'userTests/post_details.html', context)
