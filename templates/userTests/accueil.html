@@ -170,7 +170,7 @@ $(document).ready(function() {
 {% for post in posts %}
 <div class="col-md-4">
   <div class="card border-info-subtle shadow-sm" id="carte">
-    <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{post.title}}" style="width: 400px; height: 200px;">
+    <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{post.title}}" style="width: 100%; height: 200px;">
     <div class="card-body">
       <h5 class="card-title">{{ post.title }}</h5>
       <p class="card-text">{{ post.text|slice:":130"|linebreaksbr }} ....</p>
