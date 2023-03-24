@@ -15,9 +15,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 
-
-   
-
 <div class="container1">
 <a href="#"> <img src="static/images/logo1.png" alt="" width="100"></a>
       <!-- meunu nav -->
@@ -25,8 +22,9 @@
           <ul>
               <li><a href="#"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% if user.is_authenticated %}
-              <li> <a href="news"> Actualités </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li> <a href="news"> Ajouter Actualité </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% endif %}
+              <li><a href="#"> Associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li> <a href="#"> Nous contacter </a></li>
@@ -40,17 +38,12 @@
           <a href="user_login">Se Connecter </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <a href="register">S'inscrire <i class="fa-solid fa-right-to-bracket"></i></a>
         {% endif %}
-         
       </div>
-  
   </div>
-
     </head>
 
 <body>
-
   <div class="container-fluid">
-
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="1000">
@@ -122,7 +115,6 @@
   </div>
 {% endif %}
 </div>
-
 <br><br>
 
 <script>
@@ -136,9 +128,7 @@ $(document).ready(function() {
 
 </script>
 
-
 <div class="container-fluid">
-
   <div class="container-md-9">
 <div class="row">
   <div class="col-6 col-sm-6 animate__animated animate__fadeInLeft" id="imgMains">
@@ -175,7 +165,7 @@ $(document).ready(function() {
       <h5 class="card-title">{{ post.title }}</h5>
       <p class="card-text">{{ post.text|slice:":130"|linebreaksbr }} .... 
         <a href="{% url 'post_details' post.id %}" class="btn btn-link btn-block">
-          Read More
+          Show More
       </a>
       </p>
       <div class="d-flex justify-content-between align-items-center">
@@ -285,7 +275,6 @@ $(document).ready(function() {
 </div>
 <br><br><br><br>
 <br><br><br>
-
 
 <footer class="container-fluid text-black py-3"id="foot">
   <div class="container" >

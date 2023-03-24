@@ -38,7 +38,6 @@ def user_login(request):
             return redirect('user_login')
 
         user = authenticate(request, username=email, password=password)
-        # print(email)
         if user is not None:
             login(request, user)
             return redirect('accueil')
@@ -139,7 +138,6 @@ def news(request):
 
 
 # Ajouter actualite
-
 @login_required(login_url='/user_login')
 def getNews(request):
     author = request.user

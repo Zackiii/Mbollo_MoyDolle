@@ -20,14 +20,17 @@
   <a href="accueil"> <img src="static/images/logo1.png" alt="" width="100"></a>
         <!-- meunu nav -->
         <nav>
-            <ul>
-                <li><a href="/"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <li> <a href="news"> Actualités </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <li> <a href="#"> Nous contacter </a></li>
-            </ul>
-        </nav>
+          <ul>
+              <li><a href="#"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {% if user.is_authenticated %}
+              <li> <a href="news"> Ajouter Actualité </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {% endif %}
+              <li><a href="#"> Associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li> <a href="#"> Nous contacter </a></li>
+          </ul>
+      </nav>
         <!-- Partie inscription  -->
         <div class="letd1">
           {% if user.is_authenticated %}

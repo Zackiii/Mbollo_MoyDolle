@@ -19,14 +19,15 @@
    
 
 <div class="container1">
-<a href="#"> <img src="static/images/logo1.png" alt="" width="100"></a>
+<a href="accueil"> <img src="static/images/logo1.png" alt="" width="100"></a>
       <!-- meunu nav -->
       <nav>
           <ul>
-              <li><a href="#"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="accueil"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% if user.is_authenticated %}
-              <li> <a href="news"> Actualités </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li> <a href="news">Ajouter Actualité  </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% endif %}
+              <li><a href="#"> Actualités </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li> <a href="#"> Nous contacter </a></li>
@@ -52,7 +53,7 @@
 <div class="container my-5">
     <div class="row">
         <div class="col-md-6">
-            <img src="{{ post.thumbnail.url }}" style="width: 500px; height: 500px;" alt="{{ post.title }}" class="img-fluid rounded">
+            <img src="{{ post.thumbnail.url }}" style="width: 400px; height: 400px;" alt="{{ post.title }}" class="img-fluid rounded">
         </div> 
         <div class="col-md-6">
             <h1 class="fw-bold">{{ post.title }}</h1>
@@ -61,6 +62,14 @@
         <div class="col-md-6 justify-content-end">
         <p class="text-danger mb-0 text-uppercase">Par : <b> {{ post.author }} </b> </p>
       <small class="text-muted"> <b> Publié le : </b>{{ post.published_date }}</small>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        {% if user.is_authenticated and post.author == user %}
+        <a href="update/{{ post.id }}" class="btn btn-sm btn-outline-info">Modifier <i class="fa-solid fa-pencil"></i></a>&nbsp;
+        <a href="actu_delete/{{ post.id }}" class="btn btn-sm btn-outline-warning">Supprimer <i class="fa-solid fa-trash"></i></a>
+        {% endif %}
+      </div>
     </div>
     </div>
 </div>
