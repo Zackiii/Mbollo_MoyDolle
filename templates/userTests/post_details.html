@@ -19,15 +19,12 @@
    
 
 <div class="container1">
-<a href="accueil"> <img src="static/images/logo1.png" alt="" width="100"></a>
+<a href="{% url 'accueil' %}"> <img src="static/images/logo1.png" alt="" width="100"></a>
       <!-- meunu nav -->
       <nav>
           <ul>
-              <li><a href="accueil"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {% if user.is_authenticated %}
-              <li> <a href="news">Ajouter Actualité  </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              {% endif %}
-              <li><a href="#"> Actualités </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="{% url 'accueil' %}"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="{% url 'associations' %}"> Associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li> <a href="#"> Nous contacter </a></li>
@@ -66,8 +63,8 @@
     <div class="d-flex justify-content-between align-items-center">
       <div class="btn-group">
         {% if user.is_authenticated and post.author == user %}
-        <a href="update/{{ post.id }}" class="btn btn-sm btn-outline-info">Modifier <i class="fa-solid fa-pencil"></i></a>&nbsp;
-        <a href="actu_delete/{{ post.id }}" class="btn btn-sm btn-outline-warning">Supprimer <i class="fa-solid fa-trash"></i></a>
+        <a href="{% url 'update' post.id %}" class="btn btn-sm btn-outline-info">Modifier <i class="fa-solid fa-pencil"></i></a>&nbsp;
+        <a href="{% url 'actu_delete' post.id %}" class="btn btn-sm btn-outline-warning">Supprimer <i class="fa-solid fa-trash"></i></a>
         {% endif %}
       </div>
     </div>

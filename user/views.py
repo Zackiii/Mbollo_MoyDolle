@@ -241,3 +241,14 @@ def post_detail(request, post_id):
         'post': post,
     }
     return render(request, 'userTests/post_details.html', context)
+
+
+def associations(request):
+    assos = Association.objects.all()
+
+    context = {
+
+        'assos': assos
+    }
+
+    return render(request, 'userTests/associations.html', context)

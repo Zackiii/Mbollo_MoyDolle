@@ -17,15 +17,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 
 <div class="container1">
-  <a href="accueil"> <img src="static/images/logo1.png" alt="" width="100"></a>
+  <a href="{% url 'accueil' %}"> <img src="static/images/logo1.png" alt="" width="100"></a>
         <!-- meunu nav -->
         <nav>
           <ul>
-              <li><a href="#"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="{% url 'accueil' %}"> Accueil </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% if user.is_authenticated %}
               <li> <a href="news"> Ajouter Actualité </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% endif %}
-              <li><a href="#"> Associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="{% url 'associations' %}"> Associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li> <a href="#"> Nous contacter </a></li>

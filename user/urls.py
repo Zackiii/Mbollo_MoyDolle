@@ -16,6 +16,7 @@ urlpatterns = [
     path('updateActu/<int:post_id>', views.updateActu, name="updateActu"),
     path('searchEtiquette', searchEtiquette, name="searchEtiquette"),
     path('post_details/<int:post_id>', views.post_detail, name="post_details"),
+    path('associations', views.associations, name="associations"),
     #path('deleteConfirm/<int:posts_id>',deleteConfirm, name="deleteConfirm"),
     
 ]

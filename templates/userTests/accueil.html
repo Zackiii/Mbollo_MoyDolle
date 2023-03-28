@@ -24,7 +24,7 @@
               {% if user.is_authenticated %}
               <li> <a href="news"> Ajouter Actualité </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               {% endif %}
-              <li><a href="#"> Associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><a href="associations"> Associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Catégories associations </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li><a href="#"> Agir </a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <li> <a href="#"> Nous contacter </a></li>
@@ -110,7 +110,7 @@
   {% if assos|length > 6 %}
   <div class="row">
     <div class="col-md-12 text-center border-danger-subtle">
-      <a href="#">Voir tous les association</a>
+      <a href="{% url 'associations' %}">Voir tous les associations</a>
     </div>
   </div>
 {% endif %}
@@ -190,7 +190,7 @@ $(document).ready(function() {
   {% if post|length > 6 %}
   <div class="row border-danger" >
     <div class="col-md-12 text-center">
-      <a href="#">Voir plus d'Actualités</a>
+      <a href="{% url 'actualites' %}">Voir plus d'Actualités</a>
     </div>
   </div>
 {% endif %}
