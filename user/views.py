@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
@@ -90,6 +91,14 @@ def sing_up(request):
             error = True
             message = f"Un utilisateur avec email {email} ou le nom d'utilisateur {name} exist déjà'!"
 
+            # verifcation du recipisse a savoir si c'est un fichier pdf
+        if docRecepiss.content_type != 'application/pdf':
+            message = 'Le fichier doit être au format PDF.'
+
+        # Vérifie la taille du fichier (ici, on limite à 10MB)
+        if docRecepiss.size > 10*1024*1024:
+            message = 'Le fichier est trop gros (la taille maximale est de 10 Mo).'
+
             # register
         if error == False:
             # Create user and association objects
@@ -98,6 +107,7 @@ def sing_up(request):
                 email=email,
                 password=password
             )
+
             association = Association.objects.create(
                 user=user,
                 email=email,
@@ -219,12 +229,13 @@ def updateActu(request, post_id):
 
 def searchEtiquette(request):
     etiquette = request.GET.get('search')
-    result = Association.objects.filter(Q(activitePrincipal__icontains=etiquette) | Q(
-        activiteSecondaire__icontains=etiquette) | Q(activiteThird__icontains=etiquette)).annotate(
+    result = Association.objects.filter(Q(user__username__icontains=etiquette) | Q(activitePrincipal__icontains=etiquette) |
+                                        Q(activiteSecondaire__icontains=etiquette) | Q(activiteThird__icontains=etiquette)).annotate(
         priority=Case(
-            When(activitePrincipal__icontains=etiquette, then=Value(1)),
-            When(activiteSecondaire__icontains=etiquette, then=Value(2)),
-            When(activiteThird__icontains=etiquette, then=Value(3)),
+            When(user__username__icontains=etiquette, then=Value(1)),
+            When(activitePrincipal__icontains=etiquette, then=Value(2)),
+            When(activiteSecondaire__icontains=etiquette, then=Value(3)),
+            When(activiteThird__icontains=etiquette, then=Value(4)),
             output_field=CharField(),
         )).order_by('priority')
     context = {
@@ -252,3 +263,14 @@ def associations(request):
     }
 
     return render(request, 'userTests/associations.html', context)
+
+
+def actu(request):
+    actu = Post.objects.all()
+
+    context = {
+
+        'actu': actu
+    }
+
+    return render(request, 'userTest/actu.html', context)

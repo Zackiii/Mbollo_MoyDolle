@@ -17,20 +17,19 @@
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
       rel="stylesheet"/>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <title>Document</title>
   </head>
   <body>
-    <section class="vh-100" style="background-color: #eee">
-      <div class="container h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+    <section class="vh-100 " style="background-color: #eee">
+      <div class="container h-75">
+        <div class="row d-flex justify-content-center align-items-center h-75">
           <div class="col-lg-12 col-xl-11">
-            <div class="card text-black" style="border-radius: 25px">
-              <div class="card-body p-md-5">
+            <div class="card text-black"  style="border-radius: 25px">
+              <div class="card-body p-md-5 register">
                 <div class="row justify-content-center">
                   <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                      Inscription
-                    </p>
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 shadow-3 text-light">Inscription</p>
                     
                     {% if error %}
                     <div class="alert alert-danger" role="alert" data-mdb-color="danger">
@@ -38,9 +37,6 @@
                     </div>
                     {% endif %}
                     
-                    
-
-           
                     <form class="mx-1 mx-md-4" action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
 
                       {% csrf_token %}
@@ -57,192 +53,97 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="text"
-                          id="form3Example1c"
-                          class="form-control"
-                          name="name"
-                          required
-                        />
-                        <label class="form-label" for="form3Example1c"
-                          >Nom Association</label
-                        >
+                        <input type="text" id="form3Example1c" class="form-control" name="name" required/>
+                        <label class="form-label" for="form3Example1c">Nom Association</label>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-address-book me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="text"
-                          id="form3Example3c"
-                          class="form-control"
-                          name="contact"
-                          required
-                        />
-                        <label class="form-label" for="form3Example3c"
-                          > Numero Association</label
-                        >
+                        <input type="text" id="form3Example3c" class="form-control" name="contact" required/>
+                        <label class="form-label" for="form3Example3c"> Numero Association</label>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-location-dot me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="text"
-                          id="form3Example2c"
-                          class="form-control"
-                          name="address"
-                          required
-                        />
-                        <label class="form-label" for="form3Example3c"
-                          > Address</label
-                        >
+                        <input type="text" id="form3Example2c" class="form-control" name="address" required/> 
+                          <label class="form-label" for="form3Example3c"> Address</label>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-sharp fa-solid fa-file me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="file"
-                          id="form3Example4c"
-                          class="form-control"
-                          name="docRecepiss"
-                          required
-                        />
-                        <label class="form-label" for="form3Example3c"
-                          > Récépissé Association</label
-                        >
+                        <input type="file" id="form3Example4c" class="form-control" name="docRecepiss" required/>
+                        <label class="form-label" for="form3Example3c">Récépissé Association</label>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="text"
-                          id="form3Example6c"
-                          class="form-control"
-                          name="email"
-                          required
-                        />
-                        <label class="form-label" for="form3Example3c"
-                          > Email</label
-                        >
+                        <input type="text" id="form3Example6c" class="form-control" name="email" required/>
+                        <label class="form-label" for="form3Example3c"> Email</label>
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-address-book me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="text" 
-                          placeholder="exemple: renovation, distribution, assistane    3 Actualités maximum"
-                          id="form3Example5c"
-                          class="form-control"
-                          name="activitePrincipal"
-                          required
-                        />
-                        <label class="form-label" for="form3Example3c"
-                          > Activité Principale de l'Association</label
-                        >
+                        <input type="text" placeholder="exemple: renovation, distribution, assistane    3 Actualités maximum" id="form3Example5c" class="form-control" name="activitePrincipal" required/>
+                        <label class="form-label" for="form3Example3c"> Activité Principale de l'Association</label>
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-address-book me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="text"
-                          id="form3Example7c"
-                          class="form-control"
-                          name="activiteSecondaire"
-                          required
-                        />
-                        <label class="form-label" for="form3Example3c"
-                          > Activité Secondaire de l'Association</label
-                        >
+                        <input type="text" id="form3Example7c" class="form-control" name="activiteSecondaire" required/>
+                <label class="form-label" for="form3Example3c"> Activité Secondaire de l'Association</label>
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-address-book me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="text"
-                          id="form3Example8c"
-                          class="form-control"
-                          name="activiteThird"
-                          required
-                        />
-                        <label class="form-label" for="form3Example3c"
-                          > Troisiéme activité de l'Association</label
-                        >
+                        <input type="text" id="form3Example8c" class="form-control" name="activiteThird" required/>
+                        <label class="form-label" for="form3Example3c"> Troisiéme activité de l'Association</label>
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="password"
-                          id="form3Example9c"
-                          class="form-control"
-                          name="password"
-                          required
-                        />
-                        <label class="form-label" for="form3Example4c"
-                          >Mots de Passe</label
-                        >
+                        <input type="password" id="form3Example9c" class="form-control" name="password" required/>
+                        <label class="form-label" for="form3Example4c">Mots de Passe</label>
                       </div>
                     </div>
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input
-                          type="password"
-                          id="form3Example4cd"
-                          class="form-control"
-                          name="repassword"
-                          required
-                        />
-                        <label class="form-label" for="form3Example4cd"
-                          >Entrez à nouveau votre mots de passe</label
-                        >
+                        <input type="password" id="form3Example4cd" class="form-control" name="repassword" required/>
+                      <label class="form-label" for="form3Example4cd">Entrez à nouveau votre mots de passe</label>
                       </div>
                     </div>
 
-                    <div
-                      class="form-check d-flex justify-content-center mb-5"
-                    >
-                      <input
-                        class="form-check-input me-2"
-                        type="checkbox"
-                        value=""
-                        id="form2Example3cc"
-                      />
+                    <div class="form-check d-flex justify-content-center mb-5">
+                      <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cc"/>
                       <label class="form-check-label" for="form2Example3">
                         I agree all statements in
                         <a href="#!">Terms of service</a>
                       </label>
                     </div>
 
-                    <div
-                      class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
-                    >
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button type="submit" class="btn btn-primary btn-lg">
                         S'inscrire
                       </button>
                     </div>
                   </form>
                   </div>
-                  <div
-                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
-                  >
-                    <img src="static/images/registerImg.jpg"
-                      class="img-fluid"
-                      alt="Sample image"
-                    />
-                  </div>
+                  <!-- <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                    <img src="static/images/registerImg.jpg" class="img-fluid" alt="Sample image"/>
+                  </div> -->
                 </div>
               </div>
             </div>

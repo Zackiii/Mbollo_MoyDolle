@@ -22,6 +22,7 @@ class Association(models.Model):
         max_length=100, default='sante', blank=True), null=True)
     activiteThird = ArrayField(models.CharField(
         max_length=100, default='assistance', blank=True), null=True)
+    
 
 
 # Create your models here.

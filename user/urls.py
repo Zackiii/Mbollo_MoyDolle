@@ -4,7 +4,7 @@ from user.views import *
 
 
 urlpatterns = [
-    #path('', dashboard, name='dashboard'),
+    # path('', dashboard, name='dashboard'),
     path('', accueil, name='accueil'),
     path('user_login', user_login, name='user_login'),
     path('register', sing_up, name='register'),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('searchEtiquette', searchEtiquette, name="searchEtiquette"),
     path('post_details/<int:post_id>', views.post_detail, name="post_details"),
     path('associations', views.associations, name="associations"),
-    #path('deleteConfirm/<int:posts_id>',deleteConfirm, name="deleteConfirm"),
-    
+    path('actu', views.actu, name="actu"),
+    # path('deleteConfirm/<int:posts_id>',deleteConfirm, name="deleteConfirm"),
+
 ]

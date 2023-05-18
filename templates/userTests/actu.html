@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    </head>
 
+    </head>
     {% block content %}
     <body>
       
@@ -27,7 +27,7 @@
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
-                  <i class="fa-solid fa-bars"></i>
+                  <i class="fa-solid fa-right-to-bracket"></i>
                 </span>
             </button>
             
@@ -53,42 +53,40 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link border-hover py-2 text-dark">Contact Us</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="user_login" class="nav-link border-hover py-2 text-dark">Se connecter</a>
+                        </li>
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                           <a href="logout" class="nav-link border-hover py-2 text-dark">Se deconnecter</a>
                       </li>
-                      {% else %}
-                      <li class="nav-item">
-                        <a href="user_login" class="nav-link border-hover py-2 text-dark">Se connecter</a>
-                    </li>
+                      {% endif %}
                         <li class="nav-item">
                             <a href="register" id="sign-in" class="nav-link my-2 px-4 text-white">S'inscrire</a>
                         </li>
-                        {% endif %}
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-
   
-    <br><br>
-    <h1 align="center"> <b>Associations</b> </h1>
+ 
+    <h1 align="center"> <b>Actualités</b> </h1>
       <br><br>
     <div class="container">
       <div class="row">
-    {% for assoss in assos %}
+    {% for Post in actu %}
         <div class="col-md-4">
           <div class="card border-danger-subtle shadow">
             <div class="card-body">
               <h2 class="card-title text-bg-danger text-uppercase">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                 {{assoss.user}} </h2>
-              <p class="card-text"> <u>Email: </u> {{assoss.email}}</p>
-              <p class="card-text"> <u>Numero:</u>  {{assoss.numero}}</p>
-              <p class="card-text"> <u>Address:</u>  {{assoss.address}}</p>
-              <p class="card-text"><b><u>Activité Principale: </u></b>{{assoss.activitePrincipal|join:", "}}</p>
-              <p class="card-text"><b> <u>Activité Secondaire: </u> </b>{{assoss.activiteSecondaire|join:", "}}</p>
-              <p class="card-text"><b> <u>Autres activités:</u> </b>{{assoss.activiteThird|join:", "}}</p>
+              <p class="card-text"> <u>Email: </u> {{actu.email}}</p>
+              <p class="card-text"> <u>Numero:</u>  {{actu.numero}}</p>
+              <p class="card-text"> <u>Address:</u>  {{actu.address}}</p>
+              <p class="card-text"><b><u>Activité Principale: </u></b>{{actu.activitePrincipal|join:", "}}</p>
+              <p class="card-text"><b> <u>Activité Secondaire: </u> </b>{{actu.activiteSecondaire|join:", "}}</p>
+              <p class="card-text"><b> <u>Autres activités:</u> </b>{{actu.activiteThird|join:", "}}</p>
             </div>  
           </div>
           <br>

@@ -17,82 +17,198 @@
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
       rel="stylesheet"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="/static/css/style1.css"/>
     <title>Document</title>
   </head>
   <body>
-    <section
-      class="vh-100 bg-image"
-      style="background-image: url('static/images/istockphoto.jpg');">
-      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-        <div class="container h-100">
-          <div
-            class="row d-flex justify-content-center align-items-center h-100"
-          >
-            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-              <div class="card" style="border-radius: 15px">
-                <div class="card-body p-5">
-                  <h2 class="text-uppercase text-center mb-5">
-                    Connection
-                  </h2>
 
-                  <form action="{% url 'user_login' %}" method="POST">
-                    {% csrf_token %}
 
-                    {% if messages %}
-                    <ul class="messages">
-                        {% for message in messages %}
-                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+    
+<section
+class="vh-100 bg-image"
+style="background-image: url('static/images/istockphoto.jpg');">
+<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+  <div class="container h-100">
+    <div
+      class="row d-flex justify-content-center align-items-center h-100"
+    >
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px">
+          <div class="card-body p-5">
+            <h2 class="text-uppercase text-center mb-5">
+              Connection
+            </h2>
 
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                      <input type="email" id="form1Example1" class="form-control" name="email" required />
-                      <label class="form-label" for="form1Example1"> Address Email</label>
-                    </div>
-              
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                      <input type="password" id="form1Example2" class="form-control" name="password" required />
-                      <label class="form-label" for="form1Example2">Mots de passe</label>
-                    </div>
-              
-                    <!-- 2 column grid layout for inline styling -->
-                    <div class="row mb-4">
-                      <div class="col d-flex justify-content-center">
-                        <!-- Checkbox -->
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value=""
-                            id="form1Example3"
-                            checked
-                          />
-                          <label class="form-check-label" for="form1Example3">
-                            Remember me
-                          </label>
-                        </div>
-                      </div>
-              
-                      <div class="col">
-                        <!-- Simple link -->
-                        <a href="#!">Mots de passe oublié?</a>
-                      </div>
-                    </div>
-              
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-block">Se Connecter</button>
-                  </form>
+            <form action="{% url 'user_login' %}" method="POST">
+              {% csrf_token %}
+
+              {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input type="email" id="form1Example1" class="form-control" name="email" required />
+                <label class="form-label" for="form1Example1"> Address Email</label>
+              </div>
+        
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" id="form1Example2" class="form-control" name="password" required />
+                <label class="form-label" for="form1Example2">Mots de passe</label>
+              </div>
+        
+              <!-- 2 column grid layout for inline styling -->
+              <div class="row mb-4">
+                <div class="col d-flex justify-content-center">
+                  <!-- Checkbox -->
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="form1Example3"
+                      checked
+                    />
+                    <label class="form-check-label" for="form1Example3">
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+        
+                <div class="col">
+                  <!-- Simple link -->
+                  <a href="#!">Mots de passe oublié?</a>
                 </div>
               </div>
-            </div>
+        
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block">Se Connecter</button>
+            </form>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</div>
+</section>
+
+
+    <!-- <div class ="row">
+      <div class="col-md-6 mx-auto p-0">
+        <div class="card">
+    <div class="login-box">
+      <div class="login-snip">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+        <div class="login-space">
+          <div class="login">
+            <form action="{% url 'user_login' %}" method="POST">
+              {% csrf_token %}
+      
+              {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+            <div class="group">
+              <label for="user" class="label">Email Address </label>
+              <input type="email" id="form1Example1" class="input" placeholder="Enter your email" name="email" required />
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input type="password" id="form1Example2" class="input" name="password" placeholder="Enter your Password" required />
+            </div>
+            <div class="group">
+              <input id="check" type="checkbox" class="check" checked>
+              <label for="check"><span class="icon"></span> Keep me Signed in</label>
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign In">
+            </div>
+            <div class="hr"></div>
+            <div class="foot">
+              <a href="#">Forgot Password?</a>
+            </div>
+            </form>
+          </div>
+         
+          <div class="sign-up-form">
+            <form class="mx-1 mx-md-4" action="{% url 'register' %}" method="POST" enctype="multipart/form-data">
+
+              {% csrf_token %}
+
+
+              {% if message %}
+              <ul class="messages">
+                  {% for messages in message %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+            <div class="group">
+              <label for="user" class="label">Nom Association</label>
+              <input id="user" type="text" class="input" name="name" placeholder="Enter your name">
+            </div>
+            <div class="group">
+              <label for="user" class="label">Numero Association</label>
+              <input id="user" type="text" class="input" name="contact" placeholder="Enter your Username">
+            </div>
+            <div class="group">
+              <label for="user" class="label">Address</label>
+              <input id="user" type="text" class="input" name="address" placeholder="Enter Your Address">
+            </div>
+            <div class="group">
+              <label for="user" class="label">Recepisse Association</label>
+              <input id="user" name="docRecepiss" type="file" class="input" >
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Email</label>
+              <input id="pass" type="email" class="input" name="email">
+            </div>
+            <div class="group">
+              <label for="pass" class="label"> Activité Principale de l'Association</label>
+              <input id="pass" type="text" class="input"  name="activitePrincipal">
+            </div>
+            <div class="group">
+              <label for="pass" class="label"> Activité Secondaire de l'Association</label>
+              <input id="pass" type="text" class="input"  name="activiteSecondaire">
+            </div>
+            <div class="group">
+              <label for="pass" class="label"> Troisiéme activité de l'Association</label>
+              <input id="pass" type="text" class="input" name="activiteThird">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Password</label>
+              <input id="pass" type="password" class="input" data-type="password" name="password" placeholder="Create your password">
+            </div>
+            <div class="group">
+              <label for="pass" class="label">Repeat Password</label>
+              <input id="pass" type="password" class="input" data-type="password" name="repassword" placeholder="Repeat your password" >
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="Sign Up">
+            </div>
+            <div class="hr"></div>
+            <div class="foot">
+              <label for="tab-1">Already Member?</label>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>   
+    </div>
+    </div>
+      </form>
+    </div>
+     -->
 
     <!-- MDB -->
     <script
