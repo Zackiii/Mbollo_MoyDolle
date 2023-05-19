@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.db.models import Q
-from .models import Association
+from .models import *
 from actualite.models import Post
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -16,11 +16,13 @@ from django.db.models import Case, When, Value, CharField
 def accueil(request):
     posts = Post.objects.all()
     assos = Association.objects.all()
+    categorie = Category.objects.all()
     # if search_query:
     #     posts_search = Post.objects.filter(Q(title__incontains = search_query)|Q(title__areaHash__incontains = search_query))
     context = {
         'posts': posts,
         'assos': assos,
+        'categorie': categorie
         # 'posts':posts_search,
     }
     return render(request, 'userTests/accueil.html', context)
@@ -54,26 +56,22 @@ def user_login(request):
 def sing_up(request):
     error = False
     message = ""
+    categorie = Category.objects.all()
     if request.method == "POST":
         name = request.POST.get('name', None)
         email = request.POST.get('email', None)
         numero = request.POST.get('contact', None)
         address = request.POST.get('address', None)
         docRecepiss = request.FILES['docRecepiss']
-        activitePrincipal = request.POST.get('activitePrincipal', None)
-        if activitePrincipal:
-            activitePrincipal = activitePrincipal.split(",")
-        activiteSecondaire = request.POST.get('activiteSecondaire', None)
-        if activiteSecondaire:
-            activiteSecondaire = activiteSecondaire.split(",")
-        activiteThird = request.POST.get('activiteThird', None)
-        if activiteThird:
-            activiteThird = activiteThird.split(",")
+        # category = request.POST.get('category')
+        category_name = request.POST.get('category')
+        category = Category.objects.get(name=category_name)
+
         email = request.POST.get('email', None)
         password = request.POST.get('password', None)
         repassword = request.POST.get('repassword', None)
 
-        print(activitePrincipal)
+        print(category)
         # Email
         try:
             validate_email(email)
@@ -114,9 +112,10 @@ def sing_up(request):
                 numero=numero,
                 address=address,
                 docRecepiss=docRecepiss,
-                activitePrincipal=activitePrincipal,
-                activiteSecondaire=activiteSecondaire,
-                activiteThird=activiteThird
+                category=category
+                # activitePrincipal=activitePrincipal,
+                # activiteSecondaire=activiteSecondaire,
+                # activiteThird=activiteThird
             )
 
             # Login user
@@ -126,7 +125,8 @@ def sing_up(request):
 
     context = {
         'error': error,
-        'message': message
+        'message': message,
+        'categorie': categorie
     }
     return render(request, 'userTests/register.html', context)
 
@@ -256,10 +256,11 @@ def post_detail(request, post_id):
 
 def associations(request):
     assos = Association.objects.all()
-
+    category = Category.objects.all()
     context = {
 
-        'assos': assos
+        'assos': assos,
+        'category': category
     }
 
     return render(request, 'userTests/associations.html', context)

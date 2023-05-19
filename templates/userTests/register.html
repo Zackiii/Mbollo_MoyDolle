@@ -85,31 +85,21 @@
                         <label class="form-label" for="form3Example3c"> Email</label>
                       </div>
                     </div>
-
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-address-book me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" placeholder="exemple: renovation, distribution, assistane    3 Actualités maximum" id="form3Example5c" class="form-control" name="activitePrincipal" required/>
-                        <label class="form-label" for="form3Example3c"> Activité Principale de l'Association</label>
+                        <select id="form3Example5c" class="form-control" name="category" required>
+                          {% for category in categorie%}
+                        <option value="{{ category.name}}">{{ category.name}}</option>
+                        <!-- <option value="2">Aide medical</option>
+                        <option value="3">Aide religieuse</option>
+                        <option value="4">Aide financiere</option>
+                        <option value="5">Aide materiel</option> -->
+                        {% endfor %}
+                        </select>
+                        <!-- <label class="form-label" for="form3Example3c"> Activité Principale de l'Association</label> -->
                       </div>
                     </div>
-
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fa-solid fa-address-book me-4"></i>
-                      <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example7c" class="form-control" name="activiteSecondaire" required/>
-                <label class="form-label" for="form3Example3c"> Activité Secondaire de l'Association</label>
-                      </div>
-                    </div>
-
-                    <div class="d-flex flex-row align-items-center mb-4">
-                      <i class="fa-solid fa-address-book me-4"></i>
-                      <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example8c" class="form-control" name="activiteThird" required/>
-                        <label class="form-label" for="form3Example3c"> Troisiéme activité de l'Association</label>
-                      </div>
-                    </div>
-
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">

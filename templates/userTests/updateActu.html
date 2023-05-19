@@ -51,17 +51,18 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link border-hover py-2 text-dark">Contact Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="user_login" class="nav-link border-hover py-2 text-dark">Se connecter</a>
-                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                       <a href="logout" class="nav-link border-hover py-2 text-dark">Se deconnecter</a>
                   </li>
-                  {% endif %}
+                  {% else %}
+                  <li class="nav-item">
+                    <a href="user_login" class="nav-link border-hover py-2 text-dark">Se connecter</a>
+                </li>
                     <li class="nav-item">
                         <a href="register" id="sign-in" class="nav-link my-2 px-4 text-white">S'inscrire</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
