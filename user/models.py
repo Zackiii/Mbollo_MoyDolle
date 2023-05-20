@@ -25,6 +25,7 @@ class Category(models.Model):
 class Association(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
+   # user = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField(max_length=254, unique=True, null=True)
     numero = models.TextField(max_length=100, blank=True, null=True)
     address = models.TextField(max_length=100, blank=True, null=True)

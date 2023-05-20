@@ -11,6 +11,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Case, When, Value, CharField
+from django.db.models.functions import Upper
 
 
 def accueil(request):
@@ -227,21 +228,47 @@ def updateActu(request, post_id):
 #     result = Association.objects.filter(Q(activitePrincipal__icontains=etiquette) & Q(
 #         activiteSecondaire__icontains=etiquette) & Q(activiteThird__icontains=etiquette)).order_by('-activitePrincipal', '-activiteSecondaire', '-activiteThird')
 
+# def searchEtiquette(request):
+#     etiquette = request.GET.get('search')
+#     result = Association.objects.filter(
+#         Q(user__username__icontains=etiquette) | Q(
+#             category__icontains=etiquette)
+  #  )
+    # .annotate(
+    #     priority=Case(
+    #         When(category__icontains=etiquette, then=Value(1)),
+    #         When(user__username__contains=etiquette, then=Value(2)),
+    #         # When(activiteSecondaire__icontains=etiquette, then=Value(3)),
+    #         # When(activiteThird__icontains=etiquette, then=Value(4)),
+    #         output_field=CharField(),
+    #     )
+    # ).order_by('priority')
+
+# def seachEtiquette(request):
+#     etiquette = request.GET.get('search')
+#     result = Association.objects.filter(Q(user__icontains=etiquette)|Q(category__icontains=etiquette))
+#     context = {
+#         'etiquette': etiquette,
+#         'result': result
+#     }
+#     return render(request, 'userTests/searchView.html', context)
 def searchEtiquette(request):
-    etiquette = request.GET.get('search')
-    result = Association.objects.filter(Q(user__username__icontains=etiquette) | Q(activitePrincipal__icontains=etiquette) |
-                                        Q(activiteSecondaire__icontains=etiquette) | Q(activiteThird__icontains=etiquette)).annotate(
-        priority=Case(
-            When(user__username__icontains=etiquette, then=Value(1)),
-            When(activitePrincipal__icontains=etiquette, then=Value(2)),
-            When(activiteSecondaire__icontains=etiquette, then=Value(3)),
-            When(activiteThird__icontains=etiquette, then=Value(4)),
-            output_field=CharField(),
-        )).order_by('priority')
+    search_query = request.GET.get('search')
+    associations = Association.objects.all()
+    categories = Category.objects.all()
+
+    if search_query:
+        associations = associations.filter(
+            Q(user__username__icontains=search_query) | Q(
+                category__name__icontains=search_query)
+        )
+
     context = {
-        'etiquette': etiquette,
-        'result': result
+        'associations': associations,
+        'categories': categories,
+        'search_query': search_query
     }
+
     return render(request, 'userTests/searchView.html', context)
 
 

@@ -75,8 +75,8 @@
 <br><br>
 <div class="container-fluid justify-content-center">
     <ul>
-      <li> <p> Le resultat de la recherche sur  <b> {{ etiquette }}</b></p></li>
-        {% for assoss in result %}
+      <li> <p> Le resultat de la recherche sur  <b> {{ search_query }}</b></p></li>
+        {% for assoss in associations %}
         <div class="container">
           <div class="row">   
             <div class="col-md-4">
@@ -86,10 +86,10 @@
                   <p class="card-text"> <u>Email: </u> {{assoss.email}}</p>
                   <p class="card-text"> <u>Numero:</u>  {{assoss.numero}}</p>
                   <p class="card-text"> <u>Address:</u>  {{assoss.address}}</p>
-                  <p class="card-text"><b><u>Activité Principale: </u></b>{{assoss.activitePrincipal}}</p>
-                  <p class="card-text"><b> <u>Activité Secondaire: </u> </b>{{assoss.activiteSecondaire}}</p>
+                  <p class="card-text"><b><u>Activité Principale: </u></b>{{assoss.category}}</p>
+                  <!-- <p class="card-text"><b> <u>Activité Secondaire: </u> </b>{{assoss.activiteSecondaire}}</p>
                   <p class="card-text"><b> <u>Autres activités:</u> </b>{{assoss.activiteThird}}</p>
-                </div>  
+                </div>   -->
               </div>
             </div>
           </div>
