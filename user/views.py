@@ -196,9 +196,9 @@ def update(request, post_id):
 
     return render(request, 'userTests/updateActu.html', context)
 
-# update actu
 
 
+#Update actu
 @login_required(login_url='/user_login')
 def updateActu(request, post_id):
     post_id = int(post_id)

@@ -60,7 +60,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-address-book me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example3c" class="form-control" name="contact" required/>
+                        <input type="number" id="form3Example3c" class="form-control" name="contact" required/>
                         <label class="form-label" for="form3Example3c"> Numero Association</label>
                       </div>
                     </div>
@@ -74,36 +74,32 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-sharp fa-solid fa-file me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="file" id="form3Example4c" class="form-control" name="docRecepiss" required/>
                         <label class="form-label" for="form3Example3c">Récépissé Association</label>
+                        <input type="file" id="form3Example4c" class="form-control" name="docRecepiss" required/>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example6c" class="form-control" name="email" required/>
+                        <input type="text" id="form3Example5c" class="form-control" name="email" required/>
                         <label class="form-label" for="form3Example3c"> Email</label>
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fa-solid fa-address-book me-4"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <select id="form3Example5c" class="form-control" name="category" required>
+                        <select id="form3Example6c" class="form-controle" name="category" required>
                           {% for category in categorie%}
                         <option value="{{ category.name}}">{{ category.name}}</option>
-                        <!-- <option value="2">Aide medical</option>
-                        <option value="3">Aide religieuse</option>
-                        <option value="4">Aide financiere</option>
-                        <option value="5">Aide materiel</option> -->
                         {% endfor %}
                         </select>
-                        <!-- <label class="form-label " for="form3Example3c"> Category de l'Association</label> -->
+                       
                       </div>
                     </div>
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="form3Example9c" class="form-control" name="password" required/>
+                        <input type="password" id="form3Example7c" class="form-controle" name="password" required/>
                         <label class="form-label" for="form3Example4c">Mots de Passe</label>
                       </div>
                     </div>
@@ -111,7 +107,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="form3Example4cd" class="form-control" name="repassword" required/>
+                        <input type="password" id="form3Example8cd" class="form-controle" name="repassword" required/>
                       <label class="form-label" for="form3Example4cd">Entrez à nouveau votre mots de passe</label>
                       </div>
                     </div>

@@ -44,56 +44,57 @@
     </head>
     <body>
 
-      <nav>
-        <div class="navbar navbar-expand-lg pt-4">
-            <div class="container-fluid">
-                <a href="{% url 'accueil' %}" class="img-fluid "> <img src="/static/images/logo1.png" width="100" alt=""></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">
-                  <i class="fa-solid fa-bars"></i>
-                </span>
-            </button>
-            
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
-                        <!-- <li class="nav-item">
-                            <a href="#" class="nav-link border-hover py-2 text-dark">Home</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a href="{% url 'associations' %}" class="nav-link border-hover py-2 text-dark">Associations</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a href="news" class="nav-link border-hover py-2 text-dark">Ajouter une actualité</a>
-                        </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            <a href="#" class="nav-link border-hover py-2 text-dark">Agir</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link border-hover py-2 text-dark">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link border-hover py-2 text-dark">Contact Us</a>
-                        </li>
-                        <li class="nav-item">
+        <nav>
+            <div class="navbar navbar-expand-lg pt-4">
+                <div class="container-fluid">
+                    <a href="{% url 'accueil' %}" class="img-fluid "> <img src="/static/images/logo1.png" width="100" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                      <i class="fa-solid fa-right-to-bracket"></i>
+                    </span>
+                </button>
+                
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                        <ul id="nav-length" class="navbar-nav justify-content-between border-top border-2 text-center">
+                            <!-- <li class="nav-item">
+                                <a href="#" class="nav-link border-hover py-2 text-dark">Home</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="{% url 'associations' %}" class="nav-link border-hover py-2 text-dark">Associations</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a href="news" class="nav-link border-hover py-2 text-dark">Ajouter une actualité</a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a href="#" class="nav-link border-hover py-2 text-dark">Agir</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link border-hover py-2 text-dark">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link border-hover py-2 text-dark">Contact Us</a>
+                            </li>
+                            {% if user.is_authenticated %}
+                            <li class="nav-item">
+                              <a href="logout" class="nav-link border-hover py-2 text-dark">Se deconnecter</a>
+                          </li>
+                          {% else %}
+                          <li class="nav-item">
                             <a href="user_login" class="nav-link border-hover py-2 text-dark">Se connecter</a>
                         </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                          <a href="logout" class="nav-link border-hover py-2 text-dark">Se deconnecter</a>
-                      </li>
-                      {% endif %}
-                        <li class="nav-item">
-                            <a href="register" id="sign-in" class="nav-link my-2 px-4 text-white">S'inscrire</a>
-                        </li>
-                    </ul>
+                            <li class="nav-item">
+                                <a href="register" id="sign-in" class="nav-link my-2 px-4 text-white">S'inscrire</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
 {% block content %}
 

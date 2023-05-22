@@ -27,7 +27,6 @@
   box-shadow: none;
 }
 
-
 #nav-length {
   width: 90%;
 }
@@ -56,97 +55,13 @@ body{
 }
 
 
-
-/* .container1 {
-  background-color: #FFFFFF;
-  display: flex;
-  border-radius: 10px;
-  align-items: flex-start;
-  justify-content: space-between;
-  box-shadow: 0px 7px 4px #DE6868;
-} */
-/* .container1 .logo {
-  width: 100px;
-}
- 
-
-/* disposition du premier contenaire */
-/* .container1 :first-child {
-  align-self: center;
-  margin-left: 30px;
-}  */
-
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
   }
 }
 
-/* position et marge des liens inscription et connexion */
-/* .letd1 {
-  margin-top: 40px;
-  margin-left: auto;
-}
 
-
-
-.letd1 a {
-  margin-bottom: 30px;
-  background-color: #DE6868;
-  text-decoration: none;
-  color: white;
-  border-radius: 20px;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 7px 11px;
-  margin-right: 10px;
-  gap: 10px;
-  
-}
-
-/* tpropietes du meunu 
-nav ul {
-  display: flex;
-  text-align: center;
-  width: 600px;
-  padding: 10px;
-  margin-top: 10px;
-  padding-left: 230px;
-
-}
-
-
-
-nav ul li {
-  display: inline-flex;
-  padding: 10px 10px;
-}
-
-nav ul li a {
-  transition: all 0.3s ease;
-  transform: translateY(0px);
-  opacity: 4;
-}
-
-couleur police du menu et suppression du soulignement des liens 
-nav a {
-  color: black;
-  text-decoration: none;
-  display: inline;
-  font-size: 16px;
-}
-
-nav a:hover {
-  border-bottom: 3px ridge #DE6868;
-  padding: 10px 10px;
-  opacity: 2;
-}
-
- suppression des points des listes 
-ul {
-  list-style-type: none;
-} */
 .navbar{
   background-color: #FFFFFF;
 }
@@ -165,7 +80,7 @@ div a {
 }
 
 #tab {
-  margin-left: 200px;
+  margin-left: 10rem;
   width: 900px;
 }
 
@@ -174,11 +89,20 @@ div a {
 
   #searchTab{
     width: 20%;
+    display: block;
+  }
+    
+#tab{
+  width: 2rem;
+  margin-left: auto;
+  font-size:x-small;
+}
+
+  #butonSearch{
+    width: 3rem;
+    display: block;
   }
 
-  button{
-    width: 50%;
-  }
   span{
   visibility: hidden;
   }
@@ -191,18 +115,20 @@ div a {
  
   }
 
-
+.ct1, .ct2, .ct3, .ct4, .ct5, .ct6{
+  background-color: #F8F9F9;
+}
 #searchTab {
   background: linear-gradient(180deg, rgba(222, 104, 104, 0) 0%, rgba(222, 104, 104, 0.65) 62.01%);
   border-radius: 20px;
   white-space:nowrap;
-  width: 1150px;
+  width: 75%;
 }
 
 @media screen and (max-width:768px ){
   
   #carouselExampleInterval img{
-height: auto;
+  height: auto;
   width: 100%;
   }
 }
@@ -261,6 +187,28 @@ height: auto;
   height: 400px;
 }
 
+@media screen and (max-width:768px){
+  #teamBg{
+margin-top: auto;
+width: auto;
+height: auto;
+
+  }
+
+  #teamCadre{
+    width: 100px;
+    padding-bottom: 100px;
+  }
+  #teamCadre img{
+    width: 150px;
+    height: auto;
+  }
+  #teamCadre .card{
+    width: 100%;
+    height: auto;
+  }
+}
+
 #teamBg {
   margin-top: 50px;
   width: 1100px;
@@ -279,6 +227,16 @@ height: auto;
   margin-top: 30px;
 }
 
+.form-controle {
+  width: 100px;
+  border: 1px solid black;
+  margin-bottom: -1px;
+}
+
+.form-controle:focus{
+  z-index: -2;
+}
+
 #teamCadre {
   margin-bottom: 70px;
 }
@@ -286,6 +244,8 @@ height: auto;
 #teamCadre img{
   margin: auto;
   padding: auto;
+  width: 100px;
+  height: 70px;
 }
 
 #teamCadre .card:hover{
@@ -309,8 +269,8 @@ height: auto;
   cursor: pointer;
 }
 #teamCadre img:hover {
-  -webkit-mask-position: 7.5% 50%,92.5% 50%;
-          mask-position: 7.5% 50%,92.5% 50%;
+  -webkit-mask-position: 10% 50%,100% 80%;
+          mask-position: 10% 50%,100% 80%;
   filter: grayscale(0);
 }
  
@@ -323,6 +283,13 @@ height: auto;
   letter-spacing: 0em;
   text-align: center;
   padding-bottom: 20px;
+}
+
+@media screen and(max-width:768px){
+  #text3{
+    padding-top: 800px;
+  }
+  
 }
 
 #loginForm {
@@ -520,33 +487,6 @@ width: 80%;
   transition: width 0.2s ease-in-out;
 }
 
-
-
-.divider {
-  display: flex;
-  margin-top:50px;
-  &:before,
-  &:after {
-    content: "";
-    flex: 1;
-  }
-}
-.gradient {
-  align-items: stretch;
-  margin: 1em 0;
-  height: 1em;
-  line-height: 1em;
-  color: black;
-
-  
-  &:before {
-    background: linear-gradient(to right, white, #DE6868);
-  }
-  
-  &:after {
-    background: linear-gradient(to left, white, #DE6868);
-	}
-}
 
 .register{
   background-image: url('/static/images/registerImg.jpg');
