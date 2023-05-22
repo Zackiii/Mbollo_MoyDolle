@@ -256,16 +256,19 @@ def searchEtiquette(request):
     search_query = request.GET.get('search')
     associations = Association.objects.all()
     categories = Category.objects.all()
+    subcategories = SubCategory.objects.all()
 
     if search_query:
         associations = associations.filter(
-            Q(user__username__icontains=search_query) | Q(
-                category__name__icontains=search_query)
+            Q(user__username__icontains=search_query) |
+            Q(category__name__icontains=search_query) |
+            Q(category__subcategories__name__icontains=search_query)
         )
 
     context = {
         'associations': associations,
         'categories': categories,
+        'subcategories': subcategories,
         'search_query': search_query
     }
 
