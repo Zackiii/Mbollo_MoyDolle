@@ -197,8 +197,7 @@ def update(request, post_id):
     return render(request, 'userTests/updateActu.html', context)
 
 
-
-#Update actu
+# Update actu
 @login_required(login_url='/user_login')
 def updateActu(request, post_id):
     post_id = int(post_id)
@@ -305,3 +304,32 @@ def actu(request):
     }
 
     return render(request, 'userTest/actu.html', context)
+
+
+# @login_required
+# def edit_profil(request, assos_id):
+#     assos_id = int(assos_id)
+#     assos = Association.objects.get(id=assos_id)
+
+#     if request.method == 'Post':
+#         name = request.POST('name', None)
+#         email = request.POST('email', None)
+#         numero = request.POST('contact', None)
+#         address = request.POST('address', None)
+#         category_name = request.POST('category')
+#         password = request.POST.get('password', None)
+#         repassword = request.POST.get('repassword', None)
+
+#         assos.name = name
+#         assos.email = email
+#         assos.numero = numero
+#         assos.address = address
+#         assos.category = category_name
+#         assos.password = password
+#         assos.repassword = repassword
+#         assos.save()
+#         return redirect('accueil')
+#     context = {
+#         'assos': assos
+#     }
+#     return render(request, 'userTests/accueil.html', context)
