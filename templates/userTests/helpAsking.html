@@ -109,7 +109,7 @@
 <h1 align="center"> <b>Demandes</b> </h1>
 <div class="container">
     <div class="row">
-        {% for  aide in aides %}
+        {% for  aide in demandes %}
         <div class="col-md-4">
             <div class="card border-danger-subtle shadow">
               <div class="card-body">
@@ -119,6 +119,8 @@
                 <p class="card-text"> <u>facture: </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
+              {% empty %}
+  <p>Aucune demande d'aide dans cette catégorie.</p>
             </div>
             </div>
         {% endfor %}

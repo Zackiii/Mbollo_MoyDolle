@@ -6,4 +6,5 @@ urlpatterns = [
 
     path('demande_aide', helping, name='demande_aide'),
     path('demande', demande, name="demande"),
+    path('helpAsking', helpAsking, name="helpAsking"),
 ]
