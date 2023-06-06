@@ -1,17 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.db.models import Q
 from .models import *
 from actualite.models import Post
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Case, When, Value, CharField
-from django.db.models.functions import Upper
 
 
 def accueil(request):
@@ -28,9 +25,8 @@ def accueil(request):
     }
     return render(request, 'userTests/accueil.html', context)
 
-# login
 
-
+# login for association
 def user_login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -42,6 +38,7 @@ def user_login(request):
             return redirect('user_login')
 
         user = authenticate(request, username=email, password=password)
+        print(user)
         if user is not None:
             login(request, user)
             return redirect('accueil')
@@ -49,11 +46,14 @@ def user_login(request):
             messages.error(
                 request, 'Les informations d\'identification fournies ne sont pas valides.')
             return redirect('user_login')
+    # new
+    if request.user.is_authenticated:
+        return redirect('accueil')
 
     return render(request, 'userTests/user_login.html', {})
 
 
-# register
+# register for association
 def sing_up(request):
     error = False
     message = ""
@@ -106,6 +106,8 @@ def sing_up(request):
                 email=email,
                 password=password
             )
+            user.is_association = True
+            user.save()
 
             association = Association.objects.create(
                 user=user,
@@ -132,7 +134,84 @@ def sing_up(request):
     return render(request, 'userTests/register.html', context)
 
 
+# register for demandeur
+def sign_upp(request):
+    error = False
+    message = ""
+
+    if request.method == 'POST':
+        full_name = request.POST.get('fullname', None)
+        nomUser = request.POST.get('nomUser', None)
+        numero = request.POST.get('contact', None)
+        address = request.POST.get('address', None)
+        password = request.POST.get('password', None)
+        repassword = request.POST.get('repassword', None)
+        photoCIN = request.FILES['photo_cni']
+
+        if not error:
+            if password != repassword:
+                error = True
+                message = "Les deux mots de passe ne correspondent pas!"
+
+        if not error:
+            # Créer un utilisateur et un objet Demandeur
+            user = User.objects.create_user(
+                username=nomUser,
+                password=password
+            )
+
+            user.is_demandeur = True
+            user.save()
+
+            demandeur = Demandeur.objects.create(
+                user=user,
+                full_name=full_name,
+                number=numero,
+                address=address,
+                photoCIN=photoCIN,
+            )
+
+            # Connecter l'utilisateur
+            auth_user = authenticate(
+                request, username=nomUser, password=password)
+            login(request, auth_user)
+            return redirect('accueil')
+
+    context = {
+        'error': error,
+        'message': message,
+    }
+
+    return render(request, 'userTests/register2.html', context)
+
+
+# login for demander
+def user_login2(request):
+    if request.method == 'POST':
+        nomUser = request.POST.get('nomUser')
+        password = request.POST.get('password')
+        if not nomUser or not password:
+            messages.error(
+                request, 'Veuillez fournir un nom utilisateur et un mot de passe valides.')
+            return redirect('user_login')
+
+        user = authenticate(request, username=nomUser, password=password)
+        print(user)
+        if user is not None:
+            login(request, user)
+            return redirect('accueil')
+        else:
+            messages.error(
+                request, 'Les informations d\'identification fournies ne sont pas valides.')
+            return redirect('user_login')
+
+    if request.user.is_authenticated:
+        return redirect('accueil')
+
+    return render(request, 'userTests/user_login2.html', {})
 # deconnexion
+
+
 def log_out(request):
     logout(request)
     return redirect('accueil')
@@ -329,7 +408,20 @@ def actu(request):
 #         assos.repassword = repassword
 #         assos.save()
 #         return redirect('accueil')
+
 #     context = {
 #         'assos': assos
 #     }
 #     return render(request, 'userTests/accueil.html', context)
+
+def edit_profil(request):
+    context = {}
+    return render(request, 'userTests/edit_profil.html', context)
+
+
+# def helping(request):
+#     categorie = Category.objects.all()
+#     context = {
+#         'categorie': categorie
+#     }
+#     return render(request, 'userTests/demande_aide.html', context)

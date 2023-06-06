@@ -3,9 +3,14 @@ from django.conf import settings
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
-from django.dispatch import receiver
-# from django.db.models.signals import post_save
+from django.contrib.auth.models import AbstractUser
+
+
+class User(AbstractUser):
+    is_association = models.BooleanField(default=False)
+    is_demandeur = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+    is_autre = models.BooleanField(default=False)
 
 
 class Category(models.Model):
@@ -35,6 +40,9 @@ class Association(models.Model):
     category = models.ForeignKey(
         Category, related_name='categoryLink', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '%s %s' % (self.user.username, self.address)
+
 
 class SubCategory(models.Model):
     category = models.ForeignKey(
@@ -51,5 +59,17 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
 
+
+class Demandeur(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, primary_key=True)
+    full_name = models.CharField(max_length=100, blank=True)
+    nomUser = models.CharField(max_length=100, blank=True)
+    address = models.CharField(max_length=100, blank=True)
+    number = models.TextField(max_length=100, blank=True, null=True)
+    photoCIN = models.FileField(upload_to='PhotoCIN/', null=True, blank=True)
+
+    def __str__(self):
+        return self.full_name
 
 # Create your models here.

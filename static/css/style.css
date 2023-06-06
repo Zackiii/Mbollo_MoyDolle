@@ -381,6 +381,11 @@ height: auto;
   border-radius: 50px;
 }
 
+#formActu input[type=text]:focus{
+
+    border: 3px solid rgba(248, 8, 8, 0.75);
+    box-shadow: none;
+}
 .col input[type=text]:focus{
   border: 3px solid rgba(248, 8, 8, 0.75);
   box-shadow: none;
@@ -494,4 +499,14 @@ width: 80%;
   background-repeat: no-repeat;
   opacity: 1;
 
+}
+
+.register2{
+        background-image: url('/static/images/helpings.jpg');
+        background-size: 1200px;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 1;
+        color: #f1f1f1;
+    
 }

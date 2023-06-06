@@ -45,12 +45,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "user",
     "actualite",
+    "aide",
     "django_bootstrap5",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+AUTH_USER_MODEL = 'user.User'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

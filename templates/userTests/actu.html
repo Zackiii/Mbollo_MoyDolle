@@ -22,7 +22,7 @@
       <nav>
         <div class="navbar navbar-expand-lg pt-4">
             <div class="container-fluid">
-                <a href="{% url 'accueil' %}" class="img-fluid "> <img src="/static/images/logo1.png" width="100" alt=""></a>
+                <a href="{% url 'accueil' %}" class="img-fluid "> <img src="static/images/logo1.png" width="100" alt=""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -40,9 +40,18 @@
                             <a href="{% url 'associations' %}" class="nav-link border-hover py-2 text-dark">Associations</a>
                         </li>
                         {% if user.is_authenticated %}
+                        {% if user.is_association  %}
                         <li class="nav-item">
                             <a href="news" class="nav-link border-hover py-2 text-dark">Ajouter une actualité</a>
                         </li>
+                        {% endif %}
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        {% if user.is_demandeur %}
+                        <li class="nav-item">
+                          <a href="demande_aide" class="nav-link border-hover py-2 text-dark"> Demande aide</a>
+                      </li>
+                        {% endif %}
                         {% endif %}
                         <li class="nav-item">
                             <a href="#" class="nav-link border-hover py-2 text-dark">Agir</a>
@@ -53,17 +62,33 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link border-hover py-2 text-dark">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="user_login" class="nav-link border-hover py-2 text-dark">Se connecter</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                          <a href="logout" class="nav-link border-hover py-2 text-dark">Se deconnecter</a>
+                  {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle border-hover" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Compte <i class="fa-solid fa-gear"></i></a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="edit_profil" class="nav-link border-hover py-1 text-dark"><i class="fa-solid fa-user-pen"></i>Modifier Profile </a>
+                        <a href="logout" class="nav-link border-hover py-1 text-dark">Se deconnecter</a>
+                    </li>
+                      {% else %}
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle border-hover" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          S'inscrire</a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <span class="m-2 text-danger">En tant que</span>
+                            <a class="dropdown-item py-2 border-hover" href="register">Association</a>
+                            <a class="dropdown-item py-2 border-hover" href="register2">Demandeur d'aide</a>
+                          </div>
                       </li>
-                      {% endif %}
-                        <li class="nav-item">
-                            <a href="register" id="sign-in" class="nav-link my-2 px-4 text-white">S'inscrire</a>
-                        </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle border-hover" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Se connecter</a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <span class="m-2 text-danger">En tant que</span>
+                        <a href="user_login" class="nav-link border-hover py-1 text-dark">Association</a>
+                        <a href="user_login2" class="nav-link border-hover py-1 text-dark">Demandeur d'aide</a>
+                    </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
