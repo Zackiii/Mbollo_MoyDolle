@@ -27,6 +27,7 @@ def helping(request):
     return render(request, 'userTests/demande_aide.html', context)
 
 
+# view pour l'affichage des demandes d'aide pour les demanders
 @login_required
 def demande(request):
     categories = Category.objects.all()
@@ -41,13 +42,11 @@ def demande(request):
     return render(request, 'userTests/demande.html', context)
 
 
+# view pour l'affichage des demandes d'aide pour les associations
 @login_required
 def helpAsking(request):
-    # Récupérer l'association actuelle
     association = Association.objects.get(user=request.user)
-    category = association.category  # Récupérer la catégorie de l'association
-
-    # Filtrer les demandes d'aide par la catégorie de l'association
+    category = association.category
     demandes = Aide.objects.filter(category=category)
 
     context = {
