@@ -110,13 +110,13 @@
 <div class="container">
     <div class="row">
         {% for  aide in aides %}
-        <div class="col-md-4">
-            <div class="card border-danger-subtle shadow">
+        <div class="col-md-4 py-sm-3">
+            <div class="card border-danger-subtle shadow ms-sm-3 h-100 pb-lg-4 py-sm-1">
               <div class="card-body">
-                <p class="card-text"> <u>Activité: </u> {{aide.category.name}}</p>
-                <p class="card-text"> <u>Text : </u> {{aide.context}}</p>
+                <p class="card-text"> <b> <u class="text-uppercase text-danger">Types: </u> </b> {{aide.category.name}}</p>
+                <p class="card-text"> <b> <u class="text-uppercase text-bg-danger">Text : </u> </b> {{aide.context}}</p>
                 {% if aide.facture %}
-                <p class="card-text"> <u>facture: </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
+                <p class="card-text"> <b> <u class="text-uppercase">facture: </u></b> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
             </div>

@@ -5,10 +5,13 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+# view pour la recuperation et l'enrengistrement d'une demande
+
 
 @login_required(login_url='/user_login')
 def helping(request):
     categorie = Category.objects.all()
+    demandeur = Demandeur.objects.get(user=request.user)
     if request.method == 'POST':
         text = request.POST.get('text')
         devis = request.FILES['thumbnail']
@@ -17,7 +20,7 @@ def helping(request):
         category = Category.objects.get(name=category_name)
 
         aide = Aide.objects.create(
-            category=category, context=text, facture=devis)
+            category=category, context=text, facture=devis, user=demandeur)
         aide.save()
         return redirect('accueil')
 
@@ -50,7 +53,8 @@ def helpAsking(request):
     demandes = Aide.objects.filter(category=category)
 
     context = {
-        'demandes': demandes
+        'demandes': demandes,
+
     }
 
     return render(request, 'userTests/helpAsking.html', context)

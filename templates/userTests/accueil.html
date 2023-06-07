@@ -173,8 +173,8 @@
 <div class="container ct2">
   <div class="row">
     {% for assoss in assos|slice:":6" %}
-    <div class="col-md-4">
-      <div class="card border-danger-subtle shadow">
+    <div class="col-md-4 py-sm-3">
+      <div class="card border-danger-subtle shadow ms-sm-3 h-100 pb-lg-2">
         <div class="card-body">
           <h2 class="card-title text-bg-danger text-uppercase ms-2"> {{assoss.user}} </h2>
           <p class="card-text"> <u>Email: </u> {{assoss.email}}</p>
@@ -202,7 +202,7 @@
 
 <div class="container-fluid container2 ct3">
   <div class="container-md-9 ">
-<div class="row page">
+<div class="row">
   <div class="col-6 col-sm-6 " data-aos="fade-right" id="imgMains">
     <img src="{% static 'images/mains.jpg' %}" alt="My image" class="img-fluid">
   </div>

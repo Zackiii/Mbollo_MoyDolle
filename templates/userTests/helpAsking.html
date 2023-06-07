@@ -105,27 +105,25 @@
         </div>
     </div>
 </nav>
-
 <h1 align="center"> <b>Demandes</b> </h1>
 <div class="container">
     <div class="row">
-        {% for  aide in demandes %}
-        <div class="col-md-4">
-            <div class="card border-danger-subtle shadow">
+        {% for aide in demandes %}
+        <div class="col-md-4 py-sm-3">
+            <div class="card border-danger-subtle shadow ms-sm-3 h-100 ">
               <div class="card-body">
-                <p class="card-text"> <u>Activité: </u> {{aide.category.name}}</p>
-                <p class="card-text"> <u>Text : </u> {{aide.context}}</p>
+                <p class="card-text"> <u class="text-uppercase">Types: </u> {{aide.category.name}}</p>
+                <p class="card-text"> <u class="text-uppercase">Text : </u> {{aide.context}}</p>
                 {% if aide.facture %}
-                <p class="card-text"> <u>facture: </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
+                <p class="card-text"> <u class="text-uppercase">facture: </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
-              {% empty %}
-  <p>Aucune demande d'aide dans cette catégorie.</p>
             </div>
-            </div>
+        </div>
         {% endfor %}
     </div>
 </div>
+
 
 </body>
 
