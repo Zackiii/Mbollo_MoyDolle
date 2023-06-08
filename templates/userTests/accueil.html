@@ -144,7 +144,7 @@
 <div class="container-fluid text-center ct1">
   <h2><u>RECHERCHER UNE ASSOCIATION</u></h2>
   <div class="container-md" id="searchTab" data-aos="fade-up"><br>
-    <div class="row mb-3 justify-content-center">
+    <div class="row justify-content-center">
       <div class="col-md-8">
         <form class="form-inline" action="{% url 'searchEtiquette' %}" method="get">
           <label for="inputSearch" class="sr-only">Rechercher</label>
@@ -180,7 +180,7 @@
           <p class="card-text"> <u>Email: </u> {{assoss.email}}</p>
           <p class="card-text"> <u>Numero:</u>  {{assoss.numero}}</p>
           <p class="card-text"> <u>Address:</u>  {{assoss.address}}</p>
-          <p class="card-text"><b><u>Activité Principale: </u></b>{{assoss.category|join:", "}}</p>
+          <p class="card-text"><u>Activité Principale: </u>{{assoss.category|join:", "}}</p>
           <!-- <p class="card-text"><b> <u>Activité Secondaire: </u> </b>{{assoss.activiteSecondaire|join:", "}}</p>
           <p class="card-text"><b> <u>Autres activités:</u> </b>{{assoss.activiteThird|join:", "}}</p> -->
         </div>  
@@ -200,23 +200,23 @@
 
 <!--End box -->
 
-<div class="container-fluid container2 ct3">
+<div class="container-fluid  py-sm-4 ct3">
   <div class="container-md-9 ">
-<div class="row">
-  <div class="col-6 col-sm-6 " data-aos="fade-right" id="imgMains">
+<div class="row flex-md-row flex-column-reverse-py-sm-3">
+  <div class="col-6 col-sm-6 w-auto" data-aos="fade-right" id="imgMains">
     <img src="{% static 'images/mains.jpg' %}" alt="My image" class="img-fluid">
   </div>
-  <div class="col-6 col-sm-6" data-aos="fade-left" id="text1">
-    <p> En travaillant ensemble et en unissant nos forces, nous pouvons accomplir <br>
+  <div class="col-6 col-sm-6 w-auto" data-aos="fade-left" id="text1">
+    <p class="lh-lg"> En travaillant ensemble et en unissant nos forces, nous pouvons accomplir 
       des choses extraordinaires.
-      La collaboration et la coopération <br>
+      La collaboration et la coopération 
       sont essentielles pour réaliser des projets durables et significatifs.
-      <br>
-          Mbollo Moy Dollé est une plateforme qui permet de regrouper l’ensemble <br>
-           des associations qui œuvrent dans le social afin de faciliter <br>
-           la prise de contact entre eux, et avec la population. En effet à travers <br>
-           cette plateforme nous souhaitons donner la possibilité à toute personne <br>
-            dans le besoin ou voulant aider des personnes dans le besoin,<br>
+      
+          Mbollo Moy Dollé est une plateforme qui permet de regrouper l’ensemble 
+           des associations qui œuvrent dans le social afin de faciliter 
+           la prise de contact entre eux, et avec la population. En effet à travers 
+           cette plateforme nous souhaitons donner la possibilité à toute personne 
+            dans le besoin ou voulant aider des personnes dans le besoin,
            d’obtenir les bonnes informations et de pouvoir agir en conséquence.
       </p>
   </div>
@@ -266,41 +266,42 @@
 
 <br><br><br>
 <h2 id="text2" data-aos="fade-up">A propos de Notre Equipe</h2>
-<div class="container ct5" id="teamBg" data-aos="fade-up" data-aos-delay="100">
-  <div class="row align-items-center h-100" id="teamCadre">
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-danger-subtle shadow" width="35rem">
+<div class="container ct5 py-md-2" id="teamBg" data-aos="fade-up" data-aos-delay="100">
+  <div class="row align-items-center h-100 flex-column flex-column-reverse" id="teamCadre">
+    <div class="col-sm-6 col-md-3 box mb-2">
+      <div class="card border-danger-subtle shadow">
         <div class="card-body" >
-          <img src="static/images/membre1.jpg" class="card-img rounded-circle mb-2" width="20rem" height="90rem">
+          <img src="static/images/membre1.jpg" class="card-img rounded-circle mb-2 img-fluid" width="20rem" height="90rem">
           <h5 class="card-title">Alioune</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-danger-subtle shadow" width="35rem">
+    <div class="col-sm-6 col-md-3 box mb-2">
+      <div class="card border-danger-subtle shadow">
         <div class="card-body">
-          <img src="static/images/membre2.jpg" class="card-img rounded-circle mb-2" width="20rem" height="90rem">
+          <img src="static/images/membre2.jpg" class="card-img rounded-circle mb-2 img-fluid" width="20rem" height="90rem">
           <h5 class="card-title">Ibrahima</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-danger-subtle shadow" width="35rem">
-        <div class="card-body">
-          <img src="static/images/membre3.jpg" class="card-img rounded-circle mb-2" width="20rem" height="90rem">
+    <div class="col-sm-6 col-md-3 box mb-2">
+      <div class="card border-danger-subtle shadow">
+       <div class="card-body">
+          <img src="static/images/membre3.jpg" class="card-img rounded-circle mb-2 img-fluid" width="20rem" height="90rem">
           <h5 class="card-title">Zackaria</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 col-md-3">
-      <div class="card border-danger-subtle shadow" width="35rem">
+    <div class="col-sm-6 col-md-3 box mb-2">
+      <div class="card border-danger-subtle shadow">
         <div class="card-body">
-          <img src="static/images/membre4.jpg" class="card-img rounded-circle mb-2" width="20rem" height="90rem">
+          <img src="static/images/membre4.jpg" class="card-img rounded-circle mb-2 img-fluid" width="20rem" height="90rem">
           <h5 class="card-title">Babacar</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
         </div>
       </div>
     </div>
@@ -309,33 +310,33 @@
 
 
 <h2 id="text3">Contactez-nous</h2>
-<div class="container ct6" id="loginForm">
+<div class="container ct6 flex-column" id="loginForm">
     <form id="secondForm">
       <div class="row g-3">
-        <div class="col">
+        <div class="col-sm tol">
           <label for="exampleFormControlTextarea1" class="form-label"> <b>Prénom</b> </label>
           <input type="text" class="form-control" placeholder="Prenom" aria-label="First name">
         </div>
-        <div class="col">
+        <div class="col-sm tol">
           <label for="exampleFormControlTextarea1" class="form-label">  <b>Nom</b> </label>
           <input type="text" class="form-control" placeholder="Nom" aria-label="Last name">
         </div>
       </div> <br><br>
       <div class="row g-3">
-        <div class="col">
+        <div class="col-sm tol">
           <label for="exampleFormControlTextarea1" class="form-label"> <b>Email</b> </label>
           <input type="text" class="form-control" placeholder="Exemple: myEmail@gmail.com" aria-label="Email">
         </div>
-        <div class="col">
+        <div class="col-sm tol">
           <label for="exampleFormControlTextarea1" class="form-label"> <b>Numéro de téléphone</b> </label>
-          <input type="text" class="form-control" placeholder="Exemple: +221 77 000 00 00" aria-label="number">
+          <input type="text" class="form-control" placeholder="Exemple: +221 XX xxx xx xx" aria-label="number">
         </div>
       </div><br><br>
       <div class="mb-3 msg">
         <label for="exampleFormControlTextarea1" class="form-label"> <b>Message</b> </label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
       </div><br><br><br>
-      <div class="col-12" id="buton2">
+      <div class="col-sm-12" id="buton2">
         <button type="submit" class="btn"> <b>Envoyez</b>  <i class="fa-sharp fa-solid fa-paper-plane-top"></i></button>
       </div> 
       </form>
