@@ -93,7 +93,7 @@ div a {
         #searchTab{
           min-width: 100%;
           display: block;
-          align-content: center;
+          align-items: center;
         }
     
       #tab{
@@ -204,24 +204,24 @@ div a {
   height: 400px;
 }
 
-@media screen and (max-width:768px){
-  /* #teamBg{
-margin-top: auto;
+/* @media screen and (max-width:768px){
+  #teamBg{
 width: auto;
 height: auto;
 
-  } */
+  }
 
   #teamCadre{
     width: 300px;
     padding-bottom: 100px;
+    margin-bottom: 50px;
     display:block;
-  
   }
 
   .box{
     max-width: auto;
     min-width: 60px;
+    padding: 15rem;
     max-height: 100px;
     line-break: auto;
   }
@@ -233,7 +233,7 @@ height: auto;
     width: 100%;
     height: auto;
   }
-}
+} */
 
 #teamBg {
   margin-top: 50px;
@@ -243,14 +243,14 @@ height: auto;
 }
 
 #text2 {
-  padding-top: 30px;
+  padding-top: 15px;
   font-family: "Gotu";
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
   line-height: 43px;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 .form-controle {
@@ -271,7 +271,7 @@ height: auto;
   
 } */
 
-#teamCadre {
+/* #teamCadre {
   margin-bottom: 70px;
 }
 
@@ -280,7 +280,7 @@ height: auto;
   padding: auto;
   width: 100px;
   height: 70px;
-}
+} */
 
 #teamCadre .card:hover{
 
@@ -309,7 +309,7 @@ height: auto;
 }
  
 #text3 {
-  padding-top: 200px;
+  padding-top: 100px;
   font-family: Gotu;
   font-size: 40px;
   font-weight: 400;
@@ -319,31 +319,39 @@ height: auto;
   padding-bottom: 20px;
 }
 
-@media screen and(max-width:768px){
+
+/* @media screen and(max-width:768px){
   #text3{
     padding-top: 800px;
   }
-  
-}
 
-#loginForm {
+  .tol{
+    max-width: 70px;
+  }
+  #loginForm{
+    min-height: 500px;
+  }
+
+  #buton2{
+    top: 100px;
+  }
+} */
+
+
+/* #loginForm {
   padding-top: 20px;
   width: 712px;
   height: 448px;
   background: linear-gradient(180deg, rgba(222, 104, 104, 0) 51.19%, rgba(222, 104, 104, 0.65) 100%);
   border-radius: 50px;
 }
-/* @media screen and (max-width:768px){
-  #loginForm{
- 
-  }
-} */
+
 #buton2 button {
   width: 191px;
   height: 59px;
   background: linear-gradient(180deg, rgba(222, 104, 104, 0) 30.73%, rgba(222, 104, 104, 0.65) 100%);
   border-radius: 16px;
-}
+} */
 
 /*  */
 #pieds {
