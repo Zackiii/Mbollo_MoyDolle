@@ -102,8 +102,8 @@
  
   <center>  <h1>Modifier l'actualite</h1></center>
   {% block content %}
-    <div class="container" id="loginForm" >
-        <form method="POST" action=" {% url 'updateActu' posts.id %}" id="secondForm" enctype="multipart/form-data">
+    <div class="container" >
+        <form method="POST" action=" {% url 'updateActu' posts.id %}" enctype="multipart/form-data">
 
             {% csrf_token %}
             
