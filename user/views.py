@@ -15,12 +15,13 @@ def accueil(request):
     posts = Post.objects.all()
     assos = Association.objects.all()
     categorie = Category.objects.all()
+    print(posts)
     # if search_query:
     #     posts_search = Post.objects.filter(Q(title__incontains = search_query)|Q(title__areaHash__incontains = search_query))
     context = {
         'posts': posts,
         'assos': assos,
-        'categorie': categorie
+        'categorie': categorie,
         # 'posts':posts_search,
     }
     return render(request, 'userTests/accueil.html', context)
@@ -385,38 +386,40 @@ def actu(request):
     return render(request, 'userTest/actu.html', context)
 
 
-# @login_required
-# def edit_profil(request, assos_id):
-#     assos_id = int(assos_id)
-#     assos = Association.objects.get(id=assos_id)
+@login_required
+def edit_profil(request, assos_id):
+    assos_id = int(assos_id)
+    assos = Association.objects.get(id=assos_id)
 
-#     if request.method == 'Post':
-#         name = request.POST('name', None)
-#         email = request.POST('email', None)
-#         numero = request.POST('contact', None)
-#         address = request.POST('address', None)
-#         category_name = request.POST('category')
-#         password = request.POST.get('password', None)
-#         repassword = request.POST.get('repassword', None)
+    if request.method == 'POST':
+        name = request.POST.get('name', None)
+        email = request.POST.get('email', None)
+        numero = request.POST.get('contact', None)
+        address = request.POST.get('address', None)
+        category_name = request.POST.get('category')
+        password = request.POST.get('password', None)
+        repassword = request.POST.get('repassword', None)
 
-#         assos.name = name
-#         assos.email = email
-#         assos.numero = numero
-#         assos.address = address
-#         assos.category = category_name
-#         assos.password = password
-#         assos.repassword = repassword
-#         assos.save()
-#         return redirect('accueil')
+        assos.user.username = name
+        assos.email = email
+        assos.numero = numero
+        assos.address = address
+        assos.category = Category.objects.get(name=category_name)
+        assos.user.set_password(password)
+        assos.user.save()
+        assos.save()
 
-#     context = {
-#         'assos': assos
-#     }
-#     return render(request, 'userTests/accueil.html', context)
+        return redirect('accueil')
 
-def edit_profil(request):
-    context = {}
+    context = {
+        'assos': assos
+    }
     return render(request, 'userTests/edit_profil.html', context)
+
+
+# def edit_profil(request):
+#     context = {}
+#     return render(request, 'userTests/edit_profil.html', context)
 
 
 # def helping(request):

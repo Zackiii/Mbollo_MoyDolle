@@ -20,7 +20,7 @@ urlpatterns = [
     path('post_details/<int:post_id>', views.post_detail, name="post_details"),
     path('associations', views.associations, name="associations"),
     path('actu', views.actu, name="actu"),
-    path('edit_profil', views.edit_profil, name="edit_profil"),
+    path('edit_profil/<int:assos_id>', views.edit_profil, name="edit_profil"),
 
     # path('deleteConfirm/<int:posts_id>',deleteConfirm, name="deleteConfirm"),
 

@@ -205,6 +205,11 @@ div a {
   height: 400px;
 }
 
+#teamCadre img{
+  width: 150px;
+  height: 100px;
+}
+
 /* @media screen and (max-width:768px){
   #teamBg{
 width: auto;
@@ -226,22 +231,19 @@ height: auto;
     max-height: 100px;
     line-break: auto;
   }
-  #teamCadre img{
-    width: 150px;
-    height: auto;
-  }
+
   #teamCadre .card{
     width: 100%;
     height: auto;
   }
 } */
 
-#teamBg {
+/* #teamBg {
   margin-top: 50px;
   width: 1100px;
   height: 360px;
   background: linear-gradient(180deg, rgba(222, 104, 104, 0) 2.86%, rgba(222, 104, 104, 0.0970753) 64.66%, rgba(222, 104, 104, 0.65) 100%);
-}
+} */
 
 #text2 {
   padding-top: 15px;
@@ -274,9 +276,9 @@ height: auto;
 
 /* #teamCadre {
   margin-bottom: 70px;
-}
+} */
 
-#teamCadre img{
+/* #teamCadre img{
   margin: auto;
   padding: auto;
   width: 100px;

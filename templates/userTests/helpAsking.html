@@ -109,7 +109,7 @@
         {% for aide in demandes %}
         <div class="col-md-4 py-sm-3">
             <div class="card border-danger-subtle shadow ms-sm-3 h-100 ">
-              <div class="card-body">
+              <div class="card-body bg-transparent">
                 <p class="card-text"> <u class="text-uppercase">Types: </u> {{aide.category.name}}</p>
                 <p class="card-text"> <u class="text-uppercase">Text : </u> {{aide.context}}</p>
                 {% if aide.facture %}
