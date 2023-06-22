@@ -15,9 +15,7 @@ def accueil(request):
     posts = Post.objects.all()
     assos = Association.objects.all()
     categorie = Category.objects.all()
-    print(posts)
-    # if search_query:
-    #     posts_search = Post.objects.filter(Q(title__incontains = search_query)|Q(title__areaHash__incontains = search_query))
+    user_id = request.user.id
     context = {
         'posts': posts,
         'assos': assos,
@@ -108,6 +106,7 @@ def sing_up(request):
                 password=password
             )
             user.is_association = True
+            # user.is_active = False
             user.save()
 
             association = Association.objects.create(
@@ -162,6 +161,7 @@ def sign_upp(request):
             )
 
             user.is_demandeur = True
+            # user.is_active = False
             user.save()
 
             demandeur = Demandeur.objects.create(
@@ -387,34 +387,73 @@ def actu(request):
 
 
 @login_required
-def edit_profil(request, assos_id):
-    assos_id = int(assos_id)
-    assos = Association.objects.get(id=assos_id)
+def edit_profil(request, user_id):
+
+    user_id = request.user.id
+    assos = User.objects.get(id=user_id)
+    categorie = Category.objects.all()
+    user = User.objects.all()
 
     if request.method == 'POST':
-        name = request.POST.get('name', None)
-        email = request.POST.get('email', None)
+
+        full_name = request.POST.get('fullname', None)
+        print(full_name)
+        nomUser = request.POST.get('nomUser', None)
         numero = request.POST.get('contact', None)
         address = request.POST.get('address', None)
-        category_name = request.POST.get('category')
         password = request.POST.get('password', None)
         repassword = request.POST.get('repassword', None)
+        if photoCIN in request.File:
+            photoCIN = request.FILES['photo_cni']
 
-        assos.user.username = name
-        assos.email = email
+        if not error:
+            if password != repassword:
+                error = True
+                message = "Les deux mots de passe ne correspondent pas!"
+
+        user.username = full_name
+        assos.nomUser = nomUser
         assos.numero = numero
         assos.address = address
-        assos.category = Category.objects.get(name=category_name)
         assos.user.set_password(password)
+        assos.photoCIN = photoCIN
+
         assos.user.save()
         assos.save()
 
-        return redirect('accueil')
-
     context = {
-        'assos': assos
+        'assos': assos,
+        'categorie': categorie,
+
     }
     return render(request, 'userTests/edit_profil.html', context)
+
+ #     name = request.POST.get('name', None)
+    #     print(name)
+    #     email = request.POST.get('email', None)
+    #     numero = request.POST.get('contact', None)
+    #     address = request.POST.get('address', None)
+    #     category_name = request.POST.get('category')
+    #     password = request.POST.get('password', None)
+    #     repassword = request.POST.get('repassword', None)
+
+    #     if not error:
+    #         if password != repassword:
+    #             error = True
+    #             message = "Les deux mots de passe ne correspondent pas!"
+
+    #     user.username = name
+    #     assos.email = email
+    #     assos.numero = numero
+    #     assos.address = address
+    #     assos.category = Category.objects.get(name=category_name)
+    #     assos.user.set_password(password)
+    #     assos.user.save()
+    #     assos.save()
+    #     return redirect('accueil')
+
+    # else:
+    #     if user.is_demandeur:
 
 
 # def edit_profil(request):
@@ -422,9 +461,9 @@ def edit_profil(request, assos_id):
 #     return render(request, 'userTests/edit_profil.html', context)
 
 
-# def helping(request):
-#     categorie = Category.objects.all()
-#     context = {
-#         'categorie': categorie
-#     }
-#     return render(request, 'userTests/demande_aide.html', context)
+def helping(request):
+    categorie = Category.objects.all()
+    context = {
+        'categorie': categorie
+    }
+    return render(request, 'userTests/demande_aide.html', context)

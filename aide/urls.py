@@ -7,4 +7,6 @@ urlpatterns = [
     path('demande_aide', helping, name='demande_aide'),
     path('demande', demande, name="demande"),
     path('helpAsking', helpAsking, name="helpAsking"),
+    path('priseEnCharge/<int:aide_id>',
+         views.priseEnCharge, name="priseEnCharge"),
 ]

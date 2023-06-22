@@ -308,7 +308,7 @@ height: auto;
 #teamCadre img:hover {
   -webkit-mask-position: 10% 50%,100% 80%;
           mask-position: 10% 50%,100% 80%;
-  filter: grayscale(0);
+  filter: grayscale(1);
 }
  
 #text3 {
@@ -322,41 +322,12 @@ height: auto;
   padding-bottom: 20px;
 }
 
-
-/* @media screen and(max-width:768px){
-  #text3{
-    padding-top: 800px;
-  }
-
-  .tol{
-    max-width: 70px;
-  }
-  #loginForm{
-    min-height: 500px;
-  }
-
-  #buton2{
-    top: 100px;
-  }
-} */
-
-
-/* #loginForm {
-  padding-top: 20px;
-  width: 712px;
-  height: 448px;
+#loginForm{
   background: linear-gradient(180deg, rgba(222, 104, 104, 0) 51.19%, rgba(222, 104, 104, 0.65) 100%);
-  border-radius: 50px;
+  border-radius: 30px;
+  background-size: contain;
 }
 
-#buton2 button {
-  width: 191px;
-  height: 59px;
-  background: linear-gradient(180deg, rgba(222, 104, 104, 0) 30.73%, rgba(222, 104, 104, 0.65) 100%);
-  border-radius: 16px;
-} */
-
-/*  */
 #pieds {
   width: 1512px;
   height: 489px;

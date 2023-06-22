@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Aide
 from user.models import Category, Demandeur, Association
@@ -51,12 +52,28 @@ def helpAsking(request):
     association = Association.objects.get(user=request.user)
     category = association.category
     demandes = Aide.objects.filter(category=category)
-
     context = {
         'demandes': demandes,
 
     }
 
     return render(request, 'userTests/helpAsking.html', context)
+
+
+@login_required
+def priseEnCharge(request, aide_id):
+    association = Association.objects.get(user=request.user)
+    aide = Aide.objects.get(id=aide_id)
+
+    if aide.association:
+        # La demande est déjà prise en charge par une association, vous pouvez prendre les mesures appropriées ici
+        # Par exemple, rediriger l'utilisateur vers une page d'erreur ou afficher un message indiquant que la demande est déjà prise en charge.
+        return HttpResponse("Cette demande est déjà prise en charge.")
+
+    aide.association = association
+    aide.save()
+
+    return redirect('helpAsking')  # Rediriger vers la page des demandes d'aide
+
 
 # Create your views here.

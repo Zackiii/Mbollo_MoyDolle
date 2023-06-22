@@ -21,6 +21,11 @@
                 <p class="card-text"><u class="text-uppercase text-danger fw-bolder">facture: </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
+              {% if aide.support == True %}
+              <a href="#" class="btn btn-primary" value="{{aide.support}}">deja pris en charge</a>
+              {% else %}
+              <a href="#" class="btn btn-danger disabled">Prise en charge</a>
+              {% endif %}
             </div>
             </div>
         {% endfor %}

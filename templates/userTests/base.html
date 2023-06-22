@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="{% static 'js/script.js' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>       
   </head>
@@ -24,7 +25,7 @@
   <nav>
     <div class="navbar navbar-expand-lg pt-4">
         <div class="container-fluid">
-            <a href="{% url 'accueil' %}" class="img-fluid "> <img src="static/images/logo1.png" width="100" alt=""></a>
+            <a href="{% url 'accueil' %}" class="img-fluid "> <img src="/static/images/logo1.png" width="100" alt=""></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +71,7 @@
                     <a class="nav-link dropdown-toggle border-hover" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Compte <i class="fa-solid fa-gear"></i></a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="edit_profil/{{ assos.id }}" class="nav-link border-hover py-1 text-dark"><i class="fa-solid fa-user-pen"></i>Modifier Profile </a>
+                    <a href="edit_profil/{{ user.id }}" class="nav-link border-hover py-1 text-dark"><i class="fa-solid fa-user-pen"></i>Modifier Profile </a>
                     {% if user.is_demandeur %}
                           <a href="demande" class="nav-link border-hover py-1 text-dark">Mes demandes</a>
                        {% elif user.is_association %}
