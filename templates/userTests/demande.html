@@ -22,9 +22,9 @@
                 {% endif %}
               </div>
               {% if aide.support == True %}
-              <a href="#" class="btn btn-primary" value="{{aide.support}}">deja pris en charge</a>
+              <span class="badge bg-success" value="{{aide.support}}">deja pris en charge <i class="fas fa-check-circle me-1"></i></span>
               {% else %}
-              <a href="#" class="btn btn-danger disabled">Prise en charge</a>
+              <span class="badge bg-danger">Demande envoyé  <i class="fas fa-hourglass"></i></span>
               {% endif %}
             </div>
             </div>
@@ -32,7 +32,4 @@
     </div>
 </div>
 
-</body>
-
 {% endblock %}
-</html>

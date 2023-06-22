@@ -7,22 +7,23 @@
 <div class="container">
     <div class="row">
         {% for aide in demandes %}
-        <div class="col-md-4 py-sm-3">
+        <div class="col-md-4 py-sm-3 mb-5">
             <div class="card border-danger-subtle shadow ms-sm-3 h-100 ">
               <div class="card-body bg-transparent">
-                <p class="card-text"> <u class="text-uppercase">Types: </u> {{aide.category.name}}</p>
+                <p class="card-text"> <u class="text-uppercase ">Types: </u> {{aide.category.name}}</p>
                 <p class="card-text"> <u class="text-uppercase">Text : </u> {{aide.context}}</p>
                 {% if aide.facture %}
                 <p class="card-text"> <u class="text-uppercase">facture: </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
               {% if aide.association %}
-                <p  class="card-text text-muted"> <u class="text-uppercase">Déja pris en charge par : </u> <b>{{ aide.association.user.username }}</b></p>
-              {% else %}
+    
+              <span class="badge bg-success">Pris en charge <i class="fas fa-check-circle me-1"></i> par : <b class="text-uppercase">{{ aide.association.user.username }}</b></span>
+                {% else %}
                 <form action="{% url 'priseEnCharge' aide.id %}" method="POST">
                   {% csrf_token %}
                   
-                  <button class="btn btn-danger" type="submit" name="support" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.association %}disabled{% endif %}{% endif %}>Prise en charge</button>
+                  <button class="btn btn-danger btn-sm" type="submit" name="support" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.association %}disabled{% endif %}{% endif %}>Prendre en charge</button>
               
                 </form>
               {% endif %}

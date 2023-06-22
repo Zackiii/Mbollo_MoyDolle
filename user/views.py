@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
@@ -55,7 +56,6 @@ def user_login(request):
 # register for association
 def sing_up(request):
     error = False
-    message = ""
     categorie = Category.objects.all()
     if request.method == "POST":
         name = request.POST.get('name', None)
@@ -106,7 +106,7 @@ def sing_up(request):
                 password=password
             )
             user.is_association = True
-            # user.is_active = False
+            user.is_active = False
             user.save()
 
             association = Association.objects.create(
@@ -122,8 +122,11 @@ def sing_up(request):
             )
 
             # Login user
-            auth_user = authenticate(request, username=name, password=password)
-            login(request, auth_user)
+            # auth_user = authenticate(request, username=name, password=password)
+            # login(request, auth_user)
+
+            messages.success(
+                request, "Votre inscription est en cours de validation. Veuillez patienter pour la confirmation de votre compte.")
             return redirect('accueil')
 
     context = {
@@ -137,7 +140,6 @@ def sing_up(request):
 # register for demandeur
 def sign_upp(request):
     error = False
-    message = ""
 
     if request.method == 'POST':
         full_name = request.POST.get('fullname', None)
@@ -161,7 +163,7 @@ def sign_upp(request):
             )
 
             user.is_demandeur = True
-            # user.is_active = False
+            user.is_active = False
             user.save()
 
             demandeur = Demandeur.objects.create(
@@ -173,9 +175,11 @@ def sign_upp(request):
             )
 
             # Connecter l'utilisateur
-            auth_user = authenticate(
-                request, username=nomUser, password=password)
-            login(request, auth_user)
+            # auth_user = authenticate(
+            #     request, username=nomUser, password=password)
+            # login(request, auth_user)
+            messages.success(
+                request, "Votre inscription est en cours de validation. Veuillez patienter pour la confirmation de votre compte.")
             return redirect('accueil')
 
     context = {

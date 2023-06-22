@@ -11,9 +11,7 @@ class Aide(models.Model):
     user = models.ForeignKey(
         Demandeur, related_name='aides', on_delete=models.CASCADE)
     support = models.BooleanField(default=False)
-    priseEnCharge = models.ManyToManyField(Association, related_name='supportLike')
-    association = models.ForeignKey(Association, on_delete=models.SET_NULL, null=True, blank=True)
+    association = models.ForeignKey(
+        Association, on_delete=models.SET_NULL, null=True, blank=True)
 
-    def number_of_likes(self):
-        return self.likes.count()
 # Create your models here.
