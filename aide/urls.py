@@ -9,4 +9,6 @@ urlpatterns = [
     path('helpAsking', helpAsking, name="helpAsking"),
     path('priseEnCharge/<int:aide_id>',
          views.priseEnCharge, name="priseEnCharge"),
+    path('dashboard', views.dashboard, name='dashboard'),
+
 ]

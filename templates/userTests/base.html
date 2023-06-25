@@ -44,7 +44,7 @@
                     {% if user.is_authenticated %}
                     {% if user.is_association  %}
                     <li class="nav-item">
-                        <a href="news" class="nav-link border-hover py-2 text-dark">Ajouter une actualité</a>
+                        <a href="{% url 'news' %} " class="nav-link border-hover py-2 text-dark">Ajouter une actualité</a>
                     </li>
                     {% endif %}
                     {% endif %}
@@ -73,9 +73,10 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a href="edit_profil/{{ user.id }}" class="nav-link border-hover py-1 text-dark"><i class="fa-solid fa-user-pen"></i>Modifier Profile </a>
                     {% if user.is_demandeur %}
-                          <a href="demande" class="nav-link border-hover py-1 text-dark">Mes demandes</a>
+                          <a href="{% url 'demande' %}" class="nav-link border-hover py-1 text-dark">Mes demandes</a>
                        {% elif user.is_association %}
-                          <a href="helpAsking" class="nav-link border-hover py-1 text-dark">Demandes d'aide</a>
+                          <a href="{% url 'helpAsking' %}" class="nav-link border-hover py-1 text-dark">Demandes d'aide</a>
+                          <a href="dashboard" class="nav-link border-hover py-1 text-dark">Dashbord</a>
                           {% endif %}
 
                     <a href="logout" class="nav-link border-hover py-1 text-dark">Se deconnecter</a>
