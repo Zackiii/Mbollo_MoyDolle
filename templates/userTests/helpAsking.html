@@ -10,10 +10,10 @@
         <div class="col-md-4 py-sm-3 mb-5">
             <div class="card border-danger-subtle shadow ms-sm-3 h-100 ">
               <div class="card-body bg-transparent">
-                <p class="card-text"> <u class="text-uppercase ">Types: </u> {{aide.category.name}}</p>
-                <p class="card-text"> <u class="text-uppercase">Text : </u> {{aide.context}}</p>
+                <p class="card-text"> <u class="text-uppercase"><b>Types:</b> </u> {{aide.category.name}}</p>
+                <p class="card-text"> <u class="text-uppercase"><b>Text:</b> </u> {{aide.context}}</p>
                 {% if aide.facture %}
-                <p class="card-text"> <u class="text-uppercase">facture: </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
+                <p class="card-text"> <u class="text-uppercase"><b>facture:</b> </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
               {% if aide.association %}

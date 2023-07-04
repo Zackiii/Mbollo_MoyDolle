@@ -1,8 +1,9 @@
 {% extends 'userTests/base.html' %}
 {% load static %}
  
-  <center>  <h1>Modifier l'actualite</h1></center>
-  {% block content %}
+{% block content %}
+<center>  <h1>Modifier l'actualite</h1></center>
+<br><br>
     <div class="container" >
         <form method="POST" action=" {% url 'updateActu' posts.id %}" enctype="multipart/form-data">
 
@@ -10,13 +11,25 @@
             
           <div class="row g-3" style="height: 510px;">
              <div class="col">
-                <label for="exampleFormControlTextarea1" class="form-label"> <b>Modifier image <i class="fa-solid fa-pencil"></i></b> </label>
+                <label for="exampleFormControlTextarea1" class="form-label text-uppercase"> <b>Modifier image <i class="fa-solid fa-pencil"></i></b> </label>
                <img src="{{posts.thumbnail.url}}" alt="" style="width: 280px; height: 200px;"><input type="file" name="thumbnail" accept="image/*" >
               </div>
-            <div class="col">
-              <label for="exampleFormControlTextarea1" class="form-label"> <b>Titre</b> </label>
+            <div class="col-md-6">
+              <label for="exampleFormControlTextarea1" class="form-label text-uppercase"> <b>Titre</b> </label>
               <input type="text" class="form-control" aria-label="titre" name="titre" maxlength="60" value="{{posts.title}}">
-          </div><br><br>
+          <br><br>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label text-uppercase"> <b>Text</b></label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3">{{posts.text}}</textarea>
+          </div>
+ 
+          <div class="col-12" id="buton2">
+            <button type="submit" class="btn btn-danger"> <b>Modifier</b>  <i class="fa-sharp fa-solid fa-paper-plane-top"></i></button>
+          </div> 
+        </div>
+          </div>
+          </form>
+    </div>
           <script>
             const textarea = document.getElementById("titre");
             textarea.addEventListener("input", function() {
@@ -25,16 +38,6 @@
               }
             });
           </script>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label"> <b>Text</b></label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3">{{posts.text}}</textarea>
-          </div><br><br><br>
-          <div class="col-12" id="buton2">
-            <button type="submit" class="btn"> <b>Modifier</b>  <i class="fa-sharp fa-solid fa-paper-plane-top"></i></button>
-          </div> 
-          </div>
-          </form>
-    </div>
     {% endblock %}
 </body>
 </html>
