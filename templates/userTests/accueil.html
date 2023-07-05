@@ -130,38 +130,46 @@
 <h1 align="center" class="mb-3"> <b>Actualités</b> </h1>
 <br><br>
 <div class="container" data-aos="zoom-in">
-  <div class="row">  
-    {% for post in posts %}
-    <div class="col-md-4">
-      <div class="card border-info-subtle shadow-sm" id="carte">
-        <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{post.title}}" style="width: 100%; height: 200px;">
-        <div class="card-body">
-          <h5 class="card-title">{{ post.title }}</h5>
-          <p class="card-text">{{ post.text|slice:":130"|linebreaksbr }} .... 
-            <a href="{% url 'post_details' post.id %}" class="btn btn-link btn-block">
-              Show More
-          </a>
-          </p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              {% if user.is_authenticated and post.author == user %}
-              <a href="update/{{ post.id }}" class="btn btn-sm btn-outline-info">Modifier <i class="fa-solid fa-pencil"></i></a>&nbsp;
-              <a href="actu_delete/{{ post.id }}" class="btn btn-sm btn-outline-warning">Supprimer <i class="fa-solid fa-trash"></i></a>
-              {% endif %}
+  <div class="glide" id="postCarousel">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {% for post in posts %}
+        <li class="glide__slide">
+          <div class="d-flex justify-content-center align-items-center mb-4">
+            <div class="card border-info-subtle shadow" id="carte">
+              <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{ post.title }}" style="width: 100%; height: 200px;">
+              <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.text|slice:":130"|linebreaksbr }} .... 
+                  <a href="{% url 'post_details' post.id %}" class="btn btn-link btn-block">Show More</a>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    {% if user.is_authenticated and post.author == user %}
+                    <a href="update/{{ post.id }}" class="btn btn-sm btn-outline-info">Modifier <i class="fa-solid fa-pencil"></i></a>&nbsp;
+                    <a href="actu_delete/{{ post.id }}" class="btn btn-sm btn-outline-warning">Supprimer <i class="fa-solid fa-trash"></i></a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent border-top d-flex justify-content-between align-items-center">
+                <p class="text-danger mb-0"><b>{{ post.author }}</b></p>
+                <small class="text-muted">{{ post.published_date }}</small>
+              </div>
             </div>
+            <br>
           </div>
-        </div>
-        <div class="card-footer bg-transparent border-top d-flex justify-content-between align-items-center">
-          <p class="text-danger mb-0"><b>{{ post.author }}</b></p>
-          <small class="text-muted">{{ post.published_date }}</small>
-        </div>
-      </div>
-      <br>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
-    {% endfor %}
-      </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--prev" data-glide-dir="<">Previous</button>
+      <button class="glide__arrow glide__arrow--next" data-glide-dir=">">Next</button>
+    </div>
+  </div>
       <br>
-      {% if post|length > 6 %}
+      {% if post|length > 3 %}
       <div class="row border-danger" >
         <div class="col-md-12 text-center">
           <a href="{% url 'actualites' %}">Voir plus d'Actualités</a>
@@ -296,7 +304,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script  src="/static/js/" > </script>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 {% endblock%}
 
 {% block script %}
@@ -329,6 +338,23 @@ window.addEventListener('scroll', function() {
   document.getElementById('myProgressBar').style.width = scrolled + '%';
 });
 </script>
+
+<script>
+  new Glide('.glide', {
+    type: 'carousel',
+    startAt: 0,
+    perView: 3, // Nombre de cartes visibles à la fois
+    gap: 20, // Espacement entre les cartes
+    autoplay: 3000, // Défilement automatique toutes les 3 secondes (ajustez cette valeur selon vos préférences)
+    hoverpause: true,
+    breakpoints: {
+      768: {
+        perView: 1 // Réduire le nombre de cartes visibles sur les écrans plus petits
+      }
+    }
+  }).mount();
+</script>
+
 
 {% endblock script %}
 

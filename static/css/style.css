@@ -420,7 +420,7 @@ html {
   scroll-behavior: smooth;
 }
 
-.slider {
+/* .slider {
   margin-bottom: 30px;
   position: relative;
 }
@@ -493,7 +493,7 @@ width: 80%;
     right: 2;
   } 
 
-}
+} */
 
 /*Progress bar*/
 .progress-container {

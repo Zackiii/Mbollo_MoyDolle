@@ -44,5 +44,14 @@ function mobileNavToogle() {
 }
 
 
-
+  $(document).ready(function(){
+    $('.carousel').slick({
+      // Options de configuration de Slick Carousel (si nécessaire)
+      dots: true, // Afficher les indicateurs de pagination
+      infinite: true, // Faire défiler en boucle le carousel
+      slidesToShow: 3, // Nombre de diapositives à afficher à la fois
+      slidesToScroll: 1, // Nombre de diapositives à faire défiler à la fois
+      // Autres options personnalisées peuvent être ajoutées ici
+    });
+  });
 
