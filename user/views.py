@@ -55,6 +55,7 @@ def user_login(request):
 
 # register for association
 def sing_up(request):
+    message = ""
     error = False
     categorie = Category.objects.all()
     if request.method == "POST":
@@ -140,7 +141,7 @@ def sing_up(request):
 # register for demandeur
 def sign_upp(request):
     error = False
-
+    message = ""
     if request.method == 'POST':
         full_name = request.POST.get('fullname', None)
         nomUser = request.POST.get('nomUser', None)
