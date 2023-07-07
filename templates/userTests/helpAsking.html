@@ -1,6 +1,8 @@
 {% extends 'userTests/base.html' %}
 {% load static %}
 
+{% block title %} Resultat search {% endblock %}
+
 {% block content %}
 
 <h1 align="center"> <b>Demandes</b> </h1>
@@ -13,7 +15,7 @@
                 <p class="card-text"> <u class="text-uppercase"><b>Types:</b> </u> {{aide.category.name}}</p>
                 <p class="card-text"> <u class="text-uppercase"><b>Text:</b> </u> {{aide.context}}</p>
                 {% if aide.facture %}
-                <p class="card-text"> <u class="text-uppercase"><b>facture:</b> </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
+                <p class="card-text"> <u class="text-uppercase"><b>facture:</b> </u> <a class="text-decoration-none" href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
               {% if aide.association %}

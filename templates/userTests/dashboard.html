@@ -6,160 +6,108 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"/>
     <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap5.min.css' %} ">
-    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylees.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Dashboard </title>
   </head>
   <body>
-    <!-- top navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
-      <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="offcanvasExample">
-          <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
-        </button>
-        <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold text-dark text-bg-danger" href="#">Dashboard pour Association</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar" aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <p class="navbar-brand text-md-start" href="#">Dashboard </p>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="topNavBar">
-          <form class="d-flex ms-auto my-3 my-lg-0">
-            <div class="input-group">
-              <input class="form-control shadow-sm" type="search" placeholder="Search" aria-label="Search"/>
-              <button class="btn btn-danger" type="submit">
-                <i class="bi bi-search"></i>
-              </button>
-            </div>
-          </form>
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'accueil'  %}">Accueil</a>
+              </li>
+              <a class="nav-link" href="#">Profile</a>
+            </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-fill"></i>
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Settings
               </a>
-              <ul class="dropdown-menu dropdown-menu-end">
+              <ul class="dropdown-menu ">
                 <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
+                <li><a class="dropdown-item" href="helpAsking">Demandes</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="logout">Se deconnecter</a></li>
               </ul>
             </li>
           </ul>
         </div>
+     
       </div>
     </nav>
-    <!-- top navigation bar -->
-    <!-- offcanvas -->
-    <div class="offcanvas offcanvas-start sidebar-nav bg-danger" tabindex="-1" id="sidebar">
-      <div class="offcanvas-body p-0">
-        <nav class="navbar-dark">
-          <ul class="navbar-nav">
-            <li>
-              <div class="small fw-bold text-uppercase px-3 text-black">
-                CORE
+
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+          <div class="col-auto px-0">
+              <div id="sidebar" class="collapse collapse-horizontal show border-end vh-100 shadow-sm">
+                  <div id="sidebar-nav" class="list-group border-0 rounded-0">
+                      <div class="p-2">
+                        <h4 class="text-uppercase">{{user.username}}</h4>
+                      </div>
+                      <form class="d-flex p-2">
+                          <input class="form-control me-2 shadow-none" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-danger" type="submit">Search</button>
+                      </form>
+                      <ul class="list-group">
+                          <li class="list-group-item">
+                            <a href="#" class="text-decoration-none text-black">
+                                  Dashboard</a></li>
+                          <li class="list-group-item"> <a href="{% url 'accueil' %}"
+                                  class="text-decoration-none text-black">Home</a> </li>
+                          <li class="list-group-item"> <a href="helpAsking"
+                                  class="text-decoration-none text-black">Demandes</a> </li>
+                          <li class="list-group-item active" aria-current="true">
+                             <a href="#" class="text-decoration-none text-white">Inbox</a> </li>
+                        <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Settings </a>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="helpAsking">Demandes</a></li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li><a class="dropdown-item" href="logout">Se deconnecter</a></li>
+                            </ul>
+                          </li>
+                      </ul>
+                  </div>
               </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3 active">
-                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
-            <li>
-              <div class="small fw-bold text-uppercase px-3 mb-3 text-black">
-                Interface
-              </div>
-            </li>
-            <li>
-              <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts">
-                <span class="me-2"><i class="bi bi-layout-split"></i></span>
-                <span class="text-light">Layouts</span>
-                <span class="ms-auto">
-                  <span class="right-icon">
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </span>
-              </a>
-              <div class="collapse" id="layouts">
-                <ul class="navbar-nav ps-3">
-                  <li>
-                    <a href="#" class="nav-link px-3">
-                      <span class="me-2"
-                        ><i class="bi bi-speedometer2"></i
-                      ></span>
-                      <span class="text-light">Dashboard</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                <span class="text-light">Pages</span>
-              </a>
-            </li>
-            <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
-            <li>
-              <div class=" small fw-bold text-uppercase px-3 mb-3 text-black">
-                Addons
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-graph-up"></i></span>
-                <span class="text-light">Charts</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-table"></i></span>
-                <span class="text-light">Tables</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
+          </div>
+
     <!-- offcanvas -->
     <main class="mt-5 pt-3">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h4>Dashboard</h4>
+            <h4 class="text-danger text-uppercase mb-2">Informations sur les demandes d'aides</h4>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 mb-3">
-            <div class="card bg-primary text-white h-100">
-              <div class="card-body py-5"><h5>Nombre de demandes reçues : {{ nombre_demandes }}</h5></div>
-              <div class="card-footer d-flex">
-                View Details
-                <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
-                </span>
-              </div>
-            </div>
-          </div>
           <div class="col-md-3 mb-3">
             <div class="card bg-warning text-dark h-100">
+              <div class="card-body py-5"><h5>Nombre de demandes reçues : {{ nombre_demandes }}</h5></div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="card bg-success text-light h-100">
               <div class="card-body py-5"><h5>Nombre de demandes prises en charge : {{ nombre_demandes_prises_en_charge }}</h5></div>
-              <div class="card-footer d-flex">
-                View Details
-                <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
-                </span>
-              </div>
             </div>
           </div>
-    
         </div>
-
-
-
+<hr>
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-4 mb-3">
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
@@ -170,7 +118,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 mb-3">
+          <div class="col-md-4 mb-3">
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
@@ -182,19 +130,53 @@
             </div>
           </div>
         </div>
-
-
-
-
+<hr>
+<br><br>
 
         <div class="row">
-          <div class="col-md-12 mb-3">
+          <div class="col-md-9   mb-3">
             <div class="card">
               <div class="card-header">
-                <span><i class="bi bi-table me-2"></i></span> Data Table
-              </div>
+                <span class="text-danger"><i class="bi bi-table me-2"></i></span>Demandes Reçues </div>
               <div class="card-body">
                 <div class="table-responsive">
+                  <div class="row">
+        {% for aide in demandes %}
+        <div class="col-md-4 py-sm-3  mb-3">
+            <div class="card border-danger-subtle shadow ms-sm-3 h-100 ">
+              <div class="card-body bg-transparent">
+                <p class="card-text"> <u class="text-uppercase"><b>Types:</b> </u> {{aide.category.name}}</p>
+                <p class="card-text"> <u class="text-uppercase"><b>Text:</b> </u> {{aide.context}}</p>
+                {% if aide.facture %}
+                <p class="card-text"> <u class="text-uppercase"><b>facture: </b> </u> 
+                  <a href="{{ aide.facture.url }}" class="text-decoration-none" download> Télécharger le fichier </a></p>
+                {% endif %}
+              </div>
+              {% if aide.association %}
+    
+              <span class="badge bg-success">Pris en charge <i class="fas fa-check-circle me-1"></i> par : 
+                <b class="text-uppercase">{{ aide.association.user.username }}</b></span>
+                {% else %}
+                <form action="{% url 'priseEnCharge' aide.id %}" method="POST">
+                  {% csrf_token %}
+                  
+                  <button class="btn btn-danger btn-sm" type="submit" name="support" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.association %}disabled{% endif %}{% endif %}>Prendre en charge</button>
+              
+                </form>
+              {% endif %}
+
+                          {% if aide|length > 6  %}
+                            <div class="row">
+                              <div class="col-md-12 text-center">
+                                <a href="helpAsking"> Voir toutes les demades </a>
+                              </div>
+                            </div>
+                            {% endif %}
+                          
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
                 </div>
               </div>
             </div>
@@ -202,9 +184,12 @@
         </div>
       </div>
     </main>
+
+
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'js/dataTables.bootstrap5.min.js' %}"></script>
     <script src="{% static 'js/script2.js' %}"></script>

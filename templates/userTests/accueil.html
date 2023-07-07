@@ -82,8 +82,7 @@
           <p class="card-text"> <u>Numero:</u>  {{assoss.numero}}</p>
           <p class="card-text"> <u>Address:</u>  {{assoss.address}}</p>
           <p class="card-text"><u>Activité: </u>{{assoss.category|join:", "}}</p>
-          <!-- <p class="card-text"><b> <u>Activité Secondaire: </u> </b>{{assoss.activiteSecondaire|join:", "}}</p>
-          <p class="card-text"><b> <u>Autres activités:</u> </b>{{assoss.activiteThird|join:", "}}</p> -->
+          
         </div>  
       </div>
       <br>
@@ -136,7 +135,7 @@
         {% for post in posts %}
         <li class="glide__slide">
           <div class="d-flex justify-content-center align-items-center mb-4">
-            <div class="card border-info-subtle shadow" id="carte">
+            <div class="card border-info-subtle shadow ms-sm-5 h-100 pb-lg-4" id="carte">
               <img src="{{ post.thumbnail.url }}" class="card-img-top justify-content-center" alt="{{ post.title }}" style="width: 100%; height: 200px;">
               <div class="card-body">
                 <h4 class="card-title">{{ post.title }}</h4>

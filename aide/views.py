@@ -80,20 +80,23 @@ def priseEnCharge(request, aide_id):
 # fin du view----------
 
 
+# view pour le dashboard
 @login_required
 def dashboard(request):
     association = Association.objects.get(user=request.user)
     category = association.category
     demandes = Aide.objects.filter(category=category)
     nombre_demandes = demandes.count()  # Compter le nombre de demandes
-    demandes_prises_en_charge = demandes.filter(association=association).count()
+    demandes_prises_en_charge = demandes.filter(
+        association=association).count()
 
     context = {
         'demandes': demandes,
         'association': association,
-        'nombre_demandes': nombre_demandes,  # Ajouter le nombre de demandes dans le contexte
+        # Ajouter le nombre de demandes dans le contexte
+        'nombre_demandes': nombre_demandes,
         'nombre_demandes_prises_en_charge': demandes_prises_en_charge,
     }
     return render(request, 'userTests/dashboard.html', context)
 
-
+# Fin du view ----------------------

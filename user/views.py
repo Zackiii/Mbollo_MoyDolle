@@ -471,7 +471,3 @@ def helping(request):
         'categorie': categorie
     }
     return render(request, 'userTests/demande_aide.html', context)
-
-
-
-
