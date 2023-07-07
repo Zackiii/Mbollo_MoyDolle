@@ -68,7 +68,7 @@
                                   class="text-decoration-none text-black">Home</a> </li>
                           <li class="list-group-item"> <a href="helpAsking"
                                   class="text-decoration-none text-black">Demandes</a> </li>
-                          <li class="list-group-item active" aria-current="true">
+                          <li class="list-group-item active bg-danger" aria-current="true">
                              <a href="#" class="text-decoration-none text-white">Inbox</a> </li>
                         <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -90,21 +90,35 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
-            <h4 class="text-danger text-uppercase mb-2">Informations sur les demandes d'aides</h4>
+            <h4 class="text-dark text-uppercase mb-2">Informations sur les demandes d'aides</h4>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-3 mb-3">
-            <div class="card bg-warning text-dark h-100">
-              <div class="card-body py-5"><h5>Nombre de demandes reçues : {{ nombre_demandes }}</h5></div>
+          <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-sm-6 col-xl-3">
+                    <div class="bg-warning-subtle rounded d-flex align-items-center justify-content-between p-4">
+                         <i class="fa-solid fa-hands-holding fa-2xl" style="color: #ff0000;"  > </i>
+                        <div class="ms-3">
+                            <p class="mb-2 mx-auto">Nombre de demandes reçues :</p>
+                            <h6 class="mb-2 mx-auto text-dark ">{{ nombre_demandes }}</h6>
+                        </div>
+                    </div>
+                </div>
+       
+          <div class="col-sm-6 col-xl-3">
+            <div class="bg-info-subtle rounded d-flex align-items-center justify-content-between p-4">
+              <i class="fa-solid fa-handshake fa-2xl" style="color: #008000;"></i>
+                <div class="ms-3">
+                    <p class="mb-2 mx-auto">Nombre de demandes prises en charge : </p>
+                    <h6 class="mb-0">{{ nombre_demandes_prises_en_charge }}</h6>
+                </div>
             </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <div class="card bg-success text-light h-100">
-              <div class="card-body py-5"><h5>Nombre de demandes prises en charge : {{ nombre_demandes_prises_en_charge }}</h5></div>
-            </div>
+        </div>
+        </div>
           </div>
         </div>
+        
 <hr>
         <div class="row">
           <div class="col-md-4 mb-3">
