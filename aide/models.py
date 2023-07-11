@@ -11,6 +11,7 @@ class Aide(models.Model):
     user = models.ForeignKey(
         Demandeur, related_name='aides', on_delete=models.CASCADE)
     support = models.BooleanField(default=False)
+    IsArnaque = models.BooleanField(default=False)
     association = models.ForeignKey(
         Association, on_delete=models.SET_NULL, null=True, blank=True)
 

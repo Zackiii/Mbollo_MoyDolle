@@ -21,13 +21,18 @@
                 <p class="card-text"><u class="text-uppercase text-danger fw-bolder"><b>facture:</b> </u> <a href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
+            
               {% if aide.support == True %}
-              <span class="badge bg-success" value="{{aide.support}}">pris en charge <i class="fas fa-check-circle me-1"></i></span>
+              <span class="badge bg-success">Pris en charge <i class="fas fa-check-circle me-1"></i> par : <b class="text-uppercase">{{ aide.association.user.username }}</b></span>
+
+              {% elif  aide.IsArnaque == True %}
+              <span class="badge bg-warning">Possible Arnaque <i class="fa-solid fa-triangle-exclamation"></i></span>
+
               {% else %}
               <span class="badge bg-danger">Demande effectué  <i class="fas fa-hourglass"></i></span>
               {% endif %}
             </div>
-            </div>
+        </div>
         {% endfor %}
     </div>
 </div>

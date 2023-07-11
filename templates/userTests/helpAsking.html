@@ -1,7 +1,7 @@
 {% extends 'userTests/base.html' %}
 {% load static %}
 
-{% block title %} Resultat search {% endblock %}
+{% block title %} Demandes {% endblock %}
 
 {% block content %}
 
@@ -12,22 +12,37 @@
         <div class="col-md-4 py-sm-3 mb-5">
             <div class="card border-danger-subtle shadow ms-sm-3 h-100 ">
               <div class="card-body bg-transparent">
-                <p class="card-text"> <u class="text-uppercase"><b>Types:</b> </u> {{aide.category.name}}</p>
-                <p class="card-text"> <u class="text-uppercase"><b>Text:</b> </u> {{aide.context}}</p>
+                <p class="card-text"> <u class="text-uppercase"><b>Types:</b> </u> {{ aide.category.name}}</p>
+                <p class="card-text"> <u class="text-uppercase"><b>Text:</b> </u> {{ aide.context}}</p>
                 {% if aide.facture %}
                 <p class="card-text"> <u class="text-uppercase"><b>facture:</b> </u> <a class="text-decoration-none" href="{{ aide.facture.url }}" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
-              {% if aide.association %}
-    
+
+              {% if aide.support == True %}
               <span class="badge bg-success">Pris en charge <i class="fas fa-check-circle me-1"></i> par : <b class="text-uppercase">{{ aide.association.user.username }}</b></span>
-                {% else %}
-                <form action="{% url 'priseEnCharge' aide.id %}" method="POST">
-                  {% csrf_token %}
-                  
-                  <button class="btn btn-danger btn-sm" type="submit" name="support" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.association %}disabled{% endif %}{% endif %}>Prendre en charge</button>
-              
-                </form>
+
+              {% elif  aide.IsArnaque == True %}
+              <span class="badge bg-warning">Possible Arnaque <i class="fa-solid fa-triangle-exclamation"></i></span>
+
+              {% else %}
+                <div class="dropdown position-absolute end-0" >
+                  <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <form action="{% url 'priseEnCharge' aide.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger btn-sm" type="submit" name="support" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.association %}disabled{% endif %}{% endif %}>Prendre en charge</button>
+                      </form>
+                    </li>
+                    <li>
+                      <form action="{% url 'signalerArnaque' aide.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-warning btn-sm" type="submit" name="signaler_arnaque" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.signalement_arnaque %}disabled{% endif %}{% endif %}>Signaler arnaque <i class="fa-solid fa-skull-crossbones"></i></button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
               {% endif %}
             </div>
         </div>

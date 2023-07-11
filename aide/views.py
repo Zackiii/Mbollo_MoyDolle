@@ -64,16 +64,22 @@ def helpAsking(request):
 
 
 # view pour la prise en charge
-@login_required
 def priseEnCharge(request, aide_id):
-    association = Association.objects.get(user=request.user)
-    aide = Aide.objects.get(id=aide_id)
+    if request.method == 'POST':
+        aide = Aide.objects.get(id=aide_id)
+        aide.association = request.user.association
+        aide.support = True
+        aide.save()
 
-    if aide.association:
-        return HttpResponse("Cette demande est déjà prise en charge.")
+    return redirect('helpAsking')
 
-    aide.association = association
-    aide.save()
+
+def signalerArnaque(request, aide_id):
+    if request.method == 'POST':
+        aide = Aide.objects.get(id=aide_id)
+        aide.signalement_arnaque = request.user.association
+        aide.IsArnaque = True
+        aide.save()
 
     return redirect('helpAsking')
 

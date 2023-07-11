@@ -106,20 +106,20 @@
                     </div>
                 </div>
        
-          <div class="col-sm-6 col-xl-3">
-            <div class="bg-info-subtle rounded d-flex align-items-center justify-content-between p-4">
-              <i class="fa-solid fa-handshake fa-2xl" style="color: #008000;"></i>
-                <div class="ms-3">
-                    <p class="mb-2 mx-auto">Nombre de demandes prises en charge : </p>
-                    <h6 class="mb-0">{{ nombre_demandes_prises_en_charge }}</h6>
+              <div class="col-sm-6 col-xl-3">
+                <div class="bg-info-subtle rounded d-flex align-items-center justify-content-between p-4">
+                  <i class="fa-solid fa-handshake fa-2xl" style="color: #008000;"></i>
+                    <div class="ms-3">
+                        <p class="mb-2 mx-auto">Nombre de demandes prises en charge : </p>
+                        <h6 class="mb-0">{{ nombre_demandes_prises_en_charge }}</h6>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
           </div>
         </div>
         
-<hr>
+          <hr>
         <div class="row">
           <div class="col-md-4 mb-3">
             <div class="card h-100">
@@ -143,9 +143,10 @@
               </div>
             </div>
           </div>
-        </div>
-<hr>
-<br><br>
+      </div>
+      </div>
+      <hr>
+              <br><br>
 
         <div class="row">
           <div class="col-md-9   mb-3">
@@ -166,30 +167,43 @@
                   <a href="{{ aide.facture.url }}" class="text-decoration-none" download> Télécharger le fichier </a></p>
                 {% endif %}
               </div>
-              {% if aide.association %}
-    
-              <span class="badge bg-success">Pris en charge <i class="fas fa-check-circle me-1"></i> par : 
-                <b class="text-uppercase">{{ aide.association.user.username }}</b></span>
-                {% else %}
-                <form action="{% url 'priseEnCharge' aide.id %}" method="POST">
-                  {% csrf_token %}
-                  
-                  <button class="btn btn-danger btn-sm" type="submit" name="support" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.association %}disabled{% endif %}{% endif %}>Prendre en charge</button>
-              
-                </form>
-              {% endif %}
+      
+              {% if aide.support == True %}
+              <span class="badge bg-success">Pris en charge <i class="fas fa-check-circle me-1"></i> par : <b class="text-uppercase">{{ aide.association.user.username }}</b></span>
 
-                          {% if aide|length > 6  %}
-                            <div class="row">
-                              <div class="col-md-12 text-center">
-                                <a href="helpAsking"> Voir toutes les demades </a>
-                              </div>
-                            </div>
-                            {% endif %}
-                          
-                        </div>
-                    </div>
-                    {% endfor %}
+              {% elif  aide.IsArnaque == True %}
+              <span class="badge bg-warning">Possible Arnaque <i class="fa-solid fa-triangle-exclamation"></i></span>
+
+              {% else %}
+                <div class="dropdown position-absolute end-0" >
+                  <button class="btn btn-danger dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <form action="{% url 'priseEnCharge' aide.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger btn-sm" type="submit" name="support" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.association %}disabled{% endif %}{% endif %}>Prendre en charge</button>
+                      </form>
+                    </li>
+                    <li>
+                      <form action="{% url 'signalerArnaque' aide.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-warning btn-sm" type="submit" name="signaler_arnaque" value="{{aide.id}}" {% if user.is_association and user.association != None %} {% if user.association == aide.signalement_arnaque %}disabled{% endif %}{% endif %}>Signaler arnaque <i class="fa-solid fa-skull-crossbones"></i></button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+              {% endif %}
+            </div>
+        </div>
+        
+                                  {% if aide|length > 6  %}
+                                    <div class="row">
+                                      <div class="col-md-12 text-center">
+                                        <a href="helpAsking"> Voir toutes les demades </a>
+                                      </div>
+                                    </div>
+                                    {% endif %}
+        {% endfor %}
                 </div>
                 </div>
               </div>
