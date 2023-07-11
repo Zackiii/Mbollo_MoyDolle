@@ -63,7 +63,7 @@ def helpAsking(request):
 # fin du view-----------
 
 
-# view pour la prise en charge
+# view pour la prise en charge des demandes
 def priseEnCharge(request, aide_id):
     if request.method == 'POST':
         aide = Aide.objects.get(id=aide_id)
@@ -72,8 +72,10 @@ def priseEnCharge(request, aide_id):
         aide.save()
 
     return redirect('helpAsking')
+# fin du view----------
 
 
+# view pour demandes signale comme possible arnaque des demandes
 def signalerArnaque(request, aide_id):
     if request.method == 'POST':
         aide = Aide.objects.get(id=aide_id)

@@ -4,8 +4,22 @@ from .models import *
 
 # Register your models here.
 admin.site.register(User)
-admin.site.register(Association)
-admin.site.register(Demandeur)
+
+
+class DemandeurAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'address', 'number')
+    search_fields = ('full_name', 'number', 'address')
+
+
+admin.site.register(Demandeur, DemandeurAdmin)
+
+
+class AssociationAdmin(admin.ModelAdmin):
+    list_display = ('user', 'email', 'numero', 'address', 'category')
+    list_filter = ('category', 'address')
+    search_fields = ('user__username', 'email', 'numero')
+
+admin.site.register(Association, AssociationAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
