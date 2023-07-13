@@ -85,7 +85,7 @@ def signalerArnaque(request, aide_id):
 
     return redirect('helpAsking')
 
-# fin du view----------
+# fin du view-----------------
 
 
 # view pour le dashboard

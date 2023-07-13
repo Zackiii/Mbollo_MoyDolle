@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "actualite",
     "aide",
     "django_bootstrap5",
+    "messaging",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
