@@ -25,6 +25,7 @@ urlpatterns = [
     path("", include("user.urls")),
     path("", include("actualite.urls")),
     path("", include("aide.urls")),
+    path("", include("messaging.urls")),
 ]
 if DEBUG:
     urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)

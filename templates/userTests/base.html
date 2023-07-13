@@ -69,7 +69,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle border-hover" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Compte <i class="fa-solid fa-gear"></i>
+                        Compte <b class="text-uppercase">{{request.user}} </b> <i class="fa-solid fa-gear"></i>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="edit_profil/{{ user.id }}" class="dropdown-item py-1 text-dark">
