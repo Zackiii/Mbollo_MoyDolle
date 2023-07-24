@@ -1,0 +1,59 @@
+{% extends 'userTests/base.html' %}
+
+{% load static %}
+
+{% block title %} Real-Time Chat {% endblock title %}
+
+{% block content %}
+    <h1 align="center" class="mb-5"> Real-Time Chat</h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Chat
+                    </div>
+                    <div class="card-body">
+                        <div class="chat-log" id="chat-log" style="border: 1px solid #ccc; padding: 10px; min-height: 200px; overflow-y: auto;"></div>
+                        <div class="input-group mt-3">
+                            <input id="chat-message" class="form-control" type="text" placeholder="Votre message ici...">
+                            <div class="input-group-append">
+                                <button onclick="sendMessage()" class="btn btn-primary" type="button">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+       const chatSocket = new WebSocket(
+    'ws://' + window.location.host + '/ws/chat/');
+// console.log('user_id:', '{{ user_id }}');
+chatSocket.onopen = function(event) {
+    // Logique exécutée lorsque la connexion WebSocket est établie
+    console.log('La connexion WebSocket est établie !');
+    // Vous pouvez ajouter ici d'autres actions que vous souhaitez effectuer une fois la connexion établie
+};
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            document.querySelector('#chat-log').innerHTML += (data.message + '<br>');
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        function sendMessage() {
+            const messageInput = document.querySelector('#chat-message');
+            const message = messageInput.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInput.value = '';
+        }
+    </script>
+{% endblock %}

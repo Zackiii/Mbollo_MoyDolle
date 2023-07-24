@@ -1,0 +1,39 @@
+{% extends 'userTests/base.html' %}
+{% load static %}
+
+
+{% block title %}  Envoie de message  {% endblock title %}
+
+
+
+{% block content %}
+
+<!-- create_message.html -->
+<div class="container">
+
+<form method="POST" action="{% url 'create_message' %}">
+    {% csrf_token %}
+
+    <div class="mb-3">
+
+        <label for="receiver" class="form-label mb-3">Choisissez le destinataire :</label>
+        <select name="receiver" id="receiver" class="mb-3">
+            {% for user in receivers %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+
+        
+        <label for="message_content" class="form-label mb-3">Message :</label>
+        <textarea name="message_content" id="message_content" class="form-control mb-3" rows="4" cols="50"></textarea>
+        
+        <button type="submit" class="btn btn-danger">Envoyer</button>
+    </div>
+    </form>
+</div>
+  
+
+{% endblock %}

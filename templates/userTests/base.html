@@ -16,6 +16,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+   
   
   </head>
 
@@ -69,7 +70,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle border-hover" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Compte <b class="text-uppercase">{{request.user}} </b> <i class="fa-solid fa-gear"></i>
+                        Compte <b class="text-uppercase"> {{request.user}} </b> <i class="fa-solid fa-gear"></i>
                       </a>
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="edit_profil/{{ user.id }}" class="dropdown-item py-1 text-dark">
@@ -80,6 +81,8 @@
                         {% elif user.is_association %}
                           <a href="{% url 'helpAsking' %}" class="dropdown-item py-1 text-dark">Demandes d'aide</a>
                           <a href="dashboard" class="dropdown-item py-1 text-dark">Dashboard</a>
+                          <!-- <a href="chat" class="dropdown-item py-1 text-dark"></a> -->
+                          <a href="choiceSender" class="dropdown-item py-1 text-dark">Discussions</a>  
                         {% endif %}
                         <a href="logout" class="dropdown-item py-1 text-dark">Se déconnecter</a>
                       </div>
@@ -125,7 +128,6 @@
 {% block script %}  
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-
 {% endblock script %}
 
 

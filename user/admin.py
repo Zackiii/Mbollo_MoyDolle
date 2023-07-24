@@ -3,7 +3,12 @@ from .models import *
 
 
 # Register your models here.
-admin.site.register(User)
+
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('username','is_association', 'is_demandeur', 'is_admin')
+
+
+admin.site.register(User, UserAdmin)
 
 
 class DemandeurAdmin(admin.ModelAdmin):
@@ -18,6 +23,7 @@ class AssociationAdmin(admin.ModelAdmin):
     list_display = ('user', 'email', 'numero', 'address', 'category')
     list_filter = ('category', 'address')
     search_fields = ('user__username', 'email', 'numero')
+
 
 admin.site.register(Association, AssociationAdmin)
 
