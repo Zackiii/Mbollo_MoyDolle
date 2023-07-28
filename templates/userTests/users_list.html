@@ -5,32 +5,31 @@
 {% block content %}
 
 <div class="p-10 lg:p-20 text-center">
-
     <h1 class="text-3xl lg:text-6xl">Groupes de Discussions</h1>
-
 </div>
 
 <div class="w-full flex flex-wrap items-center">
 
 <div class="row">
 
-
-        {% for user in users %}
-        <div class="col-md-5 py-sm-3 mb-1">
-            <div class="card border-danger-subtle shadow ms-sm-3 h-100 pb-lg-2">
-              <div class="card-body">
+    {% for assos in associations %}
+    <div class="col-md-5 py-sm-3 mb-1">
+        <div class="card border-danger-subtle shadow ms-sm-3 h-100 pb-lg-2">
+            <div class="card-body">
                 
-                <div class="card-text text-uppercase mb-2"> {{ user.user }}</div>
+                <div class="card-text text-uppercase mb-2"> {{ assos.user }}</div>
                 
-                <a href="{% url 'chat' user.user.id %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                <!-- Mettez à jour le lien pour utiliser le nom d'utilisateur du destinataire -->
+                <a href="{% url 'chat' receiver_username=assos.user.username %}" class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
                     Envoyer Message <i class="fa-solid fa-message"></i>
                 </a>
                 
             </div>
-            </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+    
+</div>
 
 </div>
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block title %} Real-Time Chat {% endblock title %}
 
 {% block content %}
-    <h1 align="center" class="mb-5"> Real-Time Chat</h1>
+    <h1 align="center" class="mb-5"> Real-Time Chat with {{ receiver_username }}</h1>
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 mx-auto">
@@ -14,7 +14,19 @@
                         Chat
                     </div>
                     <div class="card-body">
-                        <div class="chat-log" id="chat-log" style="border: 1px solid #ccc; padding: 10px; min-height: 200px; overflow-y: auto;"></div>
+                        <div class="chat-log" id="chat-log" style="border: 1px solid #ccc; padding: 10px; min-height: 200px; overflow-y: auto;">
+                            {% for message in messages %}
+                                {% if message.sender == user %}
+                                    <div class="sent-message">
+                                        <strong>{{ user.username }}:</strong> {{ message.message_content }}
+                                    </div>
+                                {% else %}
+                                    <div class="received-message">
+                                        <strong>{{ receiver_username }}:</strong> {{ message.message_content }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                         <div class="input-group mt-3">
                             <input id="chat-message" class="form-control" type="text" placeholder="Votre message ici...">
                             <div class="input-group-append">
@@ -26,34 +38,48 @@
             </div>
         </div>
     </div>
-
-    
+    <!-- {{receiver.username |json_script:"json-receiverUsername"}} 
+    {{ user.username  | json_script:"json-sender"}} -->
     <script>
-       const chatSocket = new WebSocket(
-    'ws://' + window.location.host + '/ws/chat/');
-// console.log('user_id:', '{{ user_id }}');
-chatSocket.onopen = function(event) {
-    // Logique exécutée lorsque la connexion WebSocket est établie
-    console.log('La connexion WebSocket est établie !');
-    // Vous pouvez ajouter ici d'autres actions que vous souhaitez effectuer une fois la connexion établie
-};
+        
+        const receiverUsername = '{{ receiver_username }}';
+        console.log('receiver_username:', '{{ receiver_username }}');
+        console.log('user:', '{{ user }}');
+        const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${receiverUsername}/`);
 
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').innerHTML += (data.message + '<br>');
+
+        chatSocket.onopen = function(event) {
+            console.log('La connexion WebSocket est établie !');
         };
+
+        chatSocket.onmessage = function (e) {
+    const data = JSON.parse(e.data);
+    const message = data.message;
+    const sender = data.sender;
+    const receiver = data.receiver;
+
+    // Afficher le message dans l'interface utilisateur du destinataire
+    const messageElement = document.createElement('div');
+    messageElement.textContent = `${sender}: ${message}`;
+    document.getElementById('message-container').appendChild(messageElement);
+};
 
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
         };
 
         function sendMessage() {
-            const messageInput = document.querySelector('#chat-message');
-            const message = messageInput.value;
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-            messageInput.value = '';
-        }
+        const messageInput = document.querySelector('#chat-message');
+        const message = messageInput.value;
+        const sender = '{{ user.username }}'; // Nom d'utilisateur de l'expéditeur
+        const receiver = '{{ receiver_username }}'; // Nom d'utilisateur du destinataire
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'sender': sender,
+            'receiver': receiver,
+        }));
+
+        messageInput.value = '';
+    }
     </script>
 {% endblock %}

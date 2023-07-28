@@ -5,9 +5,7 @@ from messaging.views import *
 
 urlpatterns = [
 
-    path('chat/<int:user_id>', views.chat, name="chat"),
-    path('create_message', views.create_message, name='create_message'),
+    path('chat/<str:receiver_username>/', views.chat, name="chat"),
     path('choiceSender', views.choiceSender, name='users_list'),
-    # path("<str:user_id>/", views.room, name="room"),
 
 ]
