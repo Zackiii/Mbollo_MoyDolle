@@ -9,4 +9,5 @@ class Message(models.Model):
     receiver = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name="received_messages", on_delete=models.CASCADE)
     message_content = models.TextField(max_length=9000)
+    date_created = models.DateTimeField(auto_now_add=True)
 

@@ -18,11 +18,11 @@
                             {% for message in messages %}
                                 {% if message.sender == user %}
                                     <div class="sent-message">
-                                        <strong>{{ user.username }}:</strong> {{ message.message_content }}
+                                        <strong class="bg-danger">{{ user.username }}:</strong> {{ message.message_content }}
                                     </div>
                                 {% else %}
                                     <div class="received-message">
-                                        <strong>{{ receiver_username }}:</strong> {{ message.message_content }}
+                                        <strong class="bg-primary">{{ receiver_username }}:</strong> {{ message.message_content }}
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -41,45 +41,46 @@
     <!-- {{receiver.username |json_script:"json-receiverUsername"}} 
     {{ user.username  | json_script:"json-sender"}} -->
     <script>
-        
         const receiverUsername = '{{ receiver_username }}';
-        console.log('receiver_username:', '{{ receiver_username }}');
-        console.log('user:', '{{ user }}');
         const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${receiverUsername}/`);
-
-
+    
         chatSocket.onopen = function(event) {
             console.log('La connexion WebSocket est établie !');
         };
-
+    
         chatSocket.onmessage = function (e) {
-    const data = JSON.parse(e.data);
-    const message = data.message;
-    const sender = data.sender;
-    const receiver = data.receiver;
-
-    // Afficher le message dans l'interface utilisateur du destinataire
-    const messageElement = document.createElement('div');
-    messageElement.textContent = `${sender}: ${message}`;
-    document.getElementById('message-container').appendChild(messageElement);
-};
-
+            const data = JSON.parse(e.data);
+            console.log('Received data:', data);
+            const message = data.message;
+            const sender = data.sender;
+            const receiver = data.receiver;
+            console.log('Received message:', message);
+            console.log('Sender:', sender);
+            console.log('Receiver:', receiver);
+    
+            // Afficher le message dans l'interface utilisateur du destinataire
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${sender}: ${message}`;
+            document.getElementById('chat-log').appendChild(messageElement);
+        };
+    
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
         };
-
+    
         function sendMessage() {
-        const messageInput = document.querySelector('#chat-message');
-        const message = messageInput.value;
-        const sender = '{{ user.username }}'; // Nom d'utilisateur de l'expéditeur
-        const receiver = '{{ receiver_username }}'; // Nom d'utilisateur du destinataire
-        chatSocket.send(JSON.stringify({
-            'message': message,
-            'sender': sender,
-            'receiver': receiver,
-        }));
-
-        messageInput.value = '';
-    }
+            const messageInput = document.querySelector('#chat-message');
+            const message = messageInput.value;
+            const sender = '{{ user.username }}'; // Nom d'utilisateur de l'expéditeur
+            const receiver = '{{ receiver_username }}'; // Nom d'utilisateur du destinataire
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'sender': sender,
+                'receiver': receiver,
+            }));
+    
+            messageInput.value = '';
+        }
     </script>
+    
 {% endblock %}
