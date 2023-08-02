@@ -1,8 +1,7 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
-from .models import *
-# from django.contrib.auth.models import User
+from .models import Message
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -23,8 +22,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
 
-        
-
         # Accepter la connexion WebSocket
         await self.accept()
 
@@ -38,16 +35,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         data = json.loads(text_data)
         message = data['message']
-        sender_username = data['sender']  # Récupérer le nom d'utilisateur du sender
+        # Récupérer le nom d'utilisateur du sender
+        sender_username = data['sender']
 
-        # Récupérer l'instance de modèle User correspondant au sender
+        # Récupérer l'instance de modèle User correspondant au sender (utiliser sync_to_async ici)
         sender = await sync_to_async(User.objects.get)(username=sender_username)
 
-        receiver_username = data['receiver']  # Récupérer le nom d'utilisateur du receiver
-        # Récupérer l'instance de modèle User correspondant au receiver
+        # Récupérer le nom d'utilisateur du receiver
+        receiver_username = data['receiver']
+        # Récupérer l'instance de modèle User correspondant au receiver (utiliser sync_to_async ici)
         receiver = await sync_to_async(User.objects.get)(username=receiver_username)
 
-    # Enregistrez le message dans la base de données
+        # Enregistrez le message dans la base de données (utiliser sync_to_async ici)
         await sync_to_async(Message.objects.create)(
             message_content=message,
             sender=sender,
@@ -77,9 +76,3 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'sender': sender,
             'receiver': receiver,
         }))
-
-    #     await sync_to_async(Message.objects.create)(
-    #     message_content=message,
-    #     sender=sender,
-    #     receiver=receiver,
-    # )
