@@ -4,9 +4,11 @@
 
 {% block title %} Real-Time Chat {% endblock title %}
 
-{% block content %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
+{% block content %}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
 
 <style>
     .message {
@@ -73,6 +75,7 @@
     </div>
     <!-- {{receiver.username |json_script:"json-receiverUsername"}} 
     {{ user.username  | json_script:"json-sender"}} -->
+    
     <script>
         const receiverUsername = '{{ receiver_username }}';
         const chatSocket = new WebSocket(`ws://${window.location.host}/ws/chat/${receiverUsername}/`);
@@ -132,7 +135,7 @@
                 });
 
                 // Répéter le processus toutes les quelques secondes pour obtenir les nouveaux messages
-                setTimeout(fetchMessages, 3000); // Répéter toutes les 3 secondes (vous pouvez ajuster l'intervalle selon vos besoins)
+                setTimeout(fetchMessages, 1000); // Répéter toutes les 3 secondes (vous pouvez ajuster l'intervalle selon vos besoins)
             },
             error: function () {
                 // En cas d'erreur, attendre un court moment puis réessayer
@@ -147,3 +150,9 @@
 
     
 {% endblock %}
+
+
+{% block script %}
+
+
+{% endblock script %}
