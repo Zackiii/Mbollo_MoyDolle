@@ -13,9 +13,13 @@ def chat(request, receiver_username):
 
     # Récupérer tous les messages entre l'expéditeur et le destinataire, triés par ordre chronologique (les plus récents en premier)
     messages = Message.objects.filter(
-        (models.Q(sender=sender) & models.Q(receiver=receiver)) |  # Messages de l'expéditeur vers le destinataire
-        (models.Q(sender=receiver) & models.Q(receiver=sender))  # Messages du destinataire vers l'expéditeur
+        # Messages de l'expéditeur vers le destinataire
+        (models.Q(sender=sender) & models.Q(receiver=receiver)) |
+        # Messages du destinataire vers l'expéditeur
+        (models.Q(sender=receiver) & models.Q(receiver=sender))
     ).order_by('date_created')  # Utilisation de 'date_created' pour trier par ordre chronologique
+
+    messages.update(is_read= True)
 
     context = {
         'receiver_username': receiver_username,
@@ -23,10 +27,8 @@ def chat(request, receiver_username):
         'messages': messages,
     }
     return render(request, 'userTests/chat.html', context)
-  
 
-
-
+#Choix de l'association pour entamer une discussion
 @login_required
 def choiceSender(request):
 
@@ -37,16 +39,15 @@ def choiceSender(request):
 
 
 def get_messages(request, receiver_username):
-    # Récupérer les messages pour le destinataire spécifié
-    # Vous pouvez ajuster cette logique en fonction de votre modèle Message
-    # Par exemple, pour récupérer les messages liés à l'utilisateur courant (request.user) et au destinataire spécifié
 
     sender = request.user
     receiver = User.objects.get(username=receiver_username)
 
     messages = Message.objects.filter(
-        (models.Q(sender=sender, receiver=receiver)) |  # Messages de l'expéditeur vers le destinataire
-        (models.Q(sender=receiver, receiver=sender))  # Messages du destinataire vers l'expéditeur
+        # Messages de l'expéditeur vers le destinataire
+        (models.Q(sender=sender, receiver=receiver)) |
+        # Messages du destinataire vers l'expéditeur
+        (models.Q(sender=receiver, receiver=sender))
     ).order_by('date_created')  # Tri par ordre chronologique
 
     # Créez une liste pour stocker les messages sous forme de dictionnaires
@@ -59,3 +60,13 @@ def get_messages(request, receiver_username):
 
     # Renvoyer les messages au format JSON
     return JsonResponse({'messages': messages_list})
+
+
+
+
+# @login_required
+# def mark_message_as_read(request, message_id):
+#     message = get_object_or_404(Message, id=message_id, receiver=request.user)
+#     message.is_read = True
+#     message.save()
+#     return JsonResponse({'success': True})

@@ -5,36 +5,17 @@
 {% block title %} Real-Time Chat {% endblock title %}
 
 
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/stylees.css' %}">
+{% endblock css %}
+
 
 {% block content %}
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
 
-<style>
-    .message {
-        padding: 8px;
-        margin-bottom: 8px;
-        border-radius: 10px;
-        max-width: 80%;
-    }
 
-    .sent-message {
-        background-color: #007bff;
-        color: white;
-        align-self: flex-end;
-    }
 
-    .received-message {
-        background-color: #f0f0f0;
-    }
-
-    .message-info {
-        font-size: 12px;
-        color: #888;
-        display: block;
-        text-align: right;
-    }
-</style>
 
 
 
@@ -50,15 +31,15 @@
                         <div class="chat-log" id="chat-log">
                             {% for message in messages %}
                                 {% if message.sender == user %}
-                                    <div class="message sent-message">
-                                        <span class="message-content">{{ message.message_content }}</span>
-                                        <span class="message-info">{{ user.username }} - {{ message.date_created|date:"DATETIME_FORMAT" }}</span>
-                                    </div>
+                            <div class="message sent-message">
+                                <span class="message-content">{{ message.message_content }}</span>
+                                <span class="message-info">{{ user.username }} - {{ message.date_created|date:"DATETIME_FORMAT" }} <i class="fa-solid fa-chevrons-right"></i></span>
+                            </div>
                                 {% else %}
-                                    <div class="message received-message">
-                                        <span class="message-content">{{ message.message_content }}</span>
-                                        <span class="message-info">{{ receiver_username }} - {{ message.date_created|date:"DATETIME_FORMAT" }}</span>
-                                    </div>
+                            <div class="message received-message">
+                                <span class="message-content">{{ message.message_content }}</span>
+                                <span class="message-info">{{ receiver_username }} - {{ message.date_created|date:"DATETIME_FORMAT" }} <i class="fa-solid fa-chevrons-right"></i></span>
+                            </div>
                                 {% endif %}
                             {% endfor %}
                         </div>
@@ -107,8 +88,8 @@
         function sendMessage() {
             const messageInput = document.querySelector('#chat-message');
             const message = messageInput.value;
-            const sender = '{{ user.username }}'; // Nom d'utilisateur de l'expéditeur
-            const receiver = '{{ receiver_username }}'; // Nom d'utilisateur du destinataire
+            const sender = '{{ user.username }}'; 
+            const receiver = '{{ receiver_username }}'; 
             chatSocket.send(JSON.stringify({
                 'message': message,
                 'sender': sender,
@@ -119,10 +100,10 @@
         }
         
 
-        function fetchMessages() {
-        $.ajax({
+    function fetchMessages() {
+        jQuery.ajax({
             type: 'GET',
-            url: `/get_messages/${receiverUsername}/`, // Remplacez cette URL par l'URL correspondant à votre vue Django pour récupérer les messages
+            url: `/get_messages/${receiverUsername}/`, // l'URL correspondant à notre vue Django pour récupérer les messages
             success: function (data) {
                 // Supprimez les messages actuels affichés dans la boîte de chat
                 document.getElementById('chat-log').innerHTML = '';
@@ -144,15 +125,9 @@
         });
     }
 
-    // Appeler la fonction fetchMessages pour récupérer les messages au chargement de la page
+   
     fetchMessages();
 </script>
 
     
 {% endblock %}
-
-
-{% block script %}
-
-
-{% endblock script %}

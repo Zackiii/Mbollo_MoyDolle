@@ -128,9 +128,20 @@ div a {
 
 
 
-.ct1, .ct2, .ct3, .ct4, .ct5, .ct6{
+.ct1,.ct3, .ct2, .ct4, .ct5, .ct6{
   background-color: #F8F9F9;
 }
+
+/* .ct2{
+  border-radius: 20px ;
+  background-image: linear-gradient(to right, #ffefba, #ffffff);
+  border-radius: 10px;
+}
+
+
+.ct10{
+  background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+} */
 
 
 #searchTab {
