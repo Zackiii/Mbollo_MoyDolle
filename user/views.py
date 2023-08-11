@@ -435,36 +435,41 @@ def edit_profil(request, user_id):
 
     if request.method == 'POST':
 
-        full_name = request.POST.get('fullname', None)
-        print(full_name)
-        nomUser = request.POST.get('nomUser', None)
+        name = request.POST.get('name', None)
+        print(name)
         numero = request.POST.get('contact', None)
         address = request.POST.get('address', None)
         password = request.POST.get('password', None)
         repassword = request.POST.get('repassword', None)
         if photoCIN in request.File:
-            photoCIN = request.FILES['photo_cni']
+            photoCIN = request.FILES['docRecepiss']
+        
+        category = request.POST.get('category')
 
         if not error:
             if password != repassword:
                 error = True
                 message = "Les deux mots de passe ne correspondent pas!"
 
-        user.username = full_name
-        assos.nomUser = nomUser
+        user.username = name
         assos.numero = numero
         assos.address = address
         assos.user.set_password(password)
-        assos.photoCIN = photoCIN
+        assos.docRecepiss = photoCIN
+        assos.category = category
+
 
         assos.user.save()
         assos.save()
+
+        return redirect('accueil')
 
     context = {
         'assos': assos,
         'categorie': categorie,
 
     }
+
     return render(request, 'userTests/edit_profil.html', context)
 
 # ---------------Fin-----------------
@@ -538,7 +543,7 @@ def contact(request):
         recipient_list = [email]
 
         send_mail(subject, message, from_email, recipient_list)
-        
+    
 
         return JsonResponse({'success': True, 'message': 'Message envoyé avec succès.'})
 

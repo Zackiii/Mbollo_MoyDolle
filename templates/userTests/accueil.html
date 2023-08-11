@@ -78,7 +78,7 @@
       <div class="card border-danger-subtle shadow ms-sm-3 h-100 pb-lg-2">
         <div class="card-body">
           <h2 class="card-title text-bg-danger text-uppercase ms-2"> {{assoss.user}} </h2>
-          <p class="card-text"> <u>Email: </u> {{assoss.email}}</p>
+          <p class="card-text"> <u>Email: </u> <a href="mailto:{{assoss.email}}">{{assoss.email}}</a></p>
           <p class="card-text"> <u>Numero Tel:</u>  {{assoss.numero}}</p>
           <p class="card-text"> <u>Addresse:</u>  {{assoss.address}}</p>
           <p class="card-text"><u>Activité: </u>{{assoss.category|join:", "}}</p>

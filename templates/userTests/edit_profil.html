@@ -29,19 +29,13 @@
               <i class="fa fa-coffee"></i>
               This is an <strong>.alert</strong>. Use this to show important messages to the user.
             </div>
-            {% if user.is_association %}
 
             <h3>Infos Association</h3>   
 
-            {% elif user.is_demandeur %}
-
-             <h3>Infos Demandeur d'aide</h3>
-            {% endif %}
 
             <form  method="POST"  class="form-horizontal edit" role="form" id="secondForm" action="{% url 'edit_profil' user.id %}" enctype="multipart/form-data">
               {% csrf_token %}
             
-              {% if user.is_association %}
               <div class="form-group">
                 <label class="col-lg-3 control-label">Nom Association:</label>
                 <div class="col-lg-8">
@@ -54,33 +48,6 @@
                   <input class="form-control" type="number" value="{{ user.numero }}" name="contact">
                 </div>
               </div>
-          {% elif user.is_demandeur %}
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Nom Complet:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="{{ user.username }}" name="fullname">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Nom d'utilisateur:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="text" value="{{ user.username }}" name="nomUser">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Numero:</label>
-            <div class="col-lg-8">
-              <input class="form-control" type="number" value="{{ user.usernane.number }}" name="contact">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Photo carte d'identite:</label>
-            <div class="col-lg-8">
-              <input type="file" class="form-control" accept="application/pdf" name="photo_cni" value="{{user.photoCIN}}">
-            </div>
-          </div>
-
-              {% endif %}
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Address:</label>
@@ -88,8 +55,6 @@
                   <input class="form-control" type="text" value="{{ assos.address }}" name="address">
                 </div>
               </div>
-
-              {% if user.is_association %}
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Récépissé Association</label>
@@ -117,14 +82,13 @@
                 </div>
               </div>
 
-              {% endif %}
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label class="col-lg-3 control-label">Mot de passe actuel:</label>
                 <div class="col-lg-8">
                   <input class="form-control" type="password" value="" name="PastPassword">
                 </div>
-              </div>
+              </div> -->
               <div class="form-group">
                 <label class="col-lg-3 control-label">Nouveau mot de passe:</label>
                 <div class="col-lg-8">
