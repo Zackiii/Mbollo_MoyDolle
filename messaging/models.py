@@ -14,7 +14,3 @@ class Message(models.Model):
     message_content = models.TextField(max_length=9000)
     date_created = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
-
-
-    
-

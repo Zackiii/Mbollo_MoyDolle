@@ -73,3 +73,11 @@ class Demandeur(models.Model):
         return self.full_name
 
 # Create your models here.
+
+
+class Contact(models.Model):
+    firstName = models.CharField(max_length=100, blank=True)
+    lastName = models.CharField(max_length=100, blank=True)
+    email = models.EmailField(max_length=80, blank=True)
+    number = models.TextField(max_length=20)
+    content = models.CharField(max_length=200, blank=True)

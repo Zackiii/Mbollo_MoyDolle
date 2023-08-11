@@ -79,8 +79,8 @@
         <div class="card-body">
           <h2 class="card-title text-bg-danger text-uppercase ms-2"> {{assoss.user}} </h2>
           <p class="card-text"> <u>Email: </u> {{assoss.email}}</p>
-          <p class="card-text"> <u>Numero:</u>  {{assoss.numero}}</p>
-          <p class="card-text"> <u>Address:</u>  {{assoss.address}}</p>
+          <p class="card-text"> <u>Numero Tel:</u>  {{assoss.numero}}</p>
+          <p class="card-text"> <u>Addresse:</u>  {{assoss.address}}</p>
           <p class="card-text"><u>Activité: </u>{{assoss.category|join:", "}}</p>
           
         </div>  
@@ -227,26 +227,28 @@
 <div class="container d-flex" id="loginForm">
   <div class="row justify-content-center">
     <div class="col-md-6">
-  <form id="secondForm" class="row g-3">
+  <form id="secondForm" class="row g-3" method="post" action="{% url 'contact' %}">
+    {% csrf_token %}
+
     <div class="col-md-6 ol-sm-6 tol">
       <label for="firstName" class="form-label"><b>Prénom</b></label>
-      <input type="text" class="form-control" id="firstName" placeholder="Prénom" aria-label="First name">
+      <input type="text" class="form-control" id="firstName" placeholder="Prénom" aria-label="First name" name="first_name">
     </div>
     <div class="col-md-6 col-sm-6 tol">
       <label for="lastName" class="form-label"><b>Nom</b></label>
-      <input type="text" class="form-control" id="lastName" placeholder="Nom" aria-label="Last name">
+      <input type="text" class="form-control" id="lastName" placeholder="Nom" aria-label="Last name" name="last_name">
     </div>
     <div class="col-md-6 col-sm-6 tol">
       <label for="email" class="form-label"><b>Email</b></label>
-      <input type="text" class="form-control" id="email" placeholder="Exemple: myEmail@gmail.com" aria-label="Email">
+      <input type="text" class="form-control" id="email" placeholder="Exemple: myEmail@gmail.com" aria-label="Email"  name="email">
     </div>
     <div class="col-md-6 col-sm-6 tol">
       <label for="phoneNumber" class="form-label"><b>Numéro de téléphone</b></label>
-      <input type="text" class="form-control" id="phoneNumber" placeholder="Exemple: +221 XX xxx xx xx" aria-label="number">
+      <input type="number" class="form-control" id="phoneNumber" placeholder="Exemple: +221 XX xxx xx xx" aria-label="number" name="numero">
     </div>
     <div class="col-md-10 msg">
       <label for="message" class="form-label"><b>Message</b></label>
-      <textarea class="form-control" id="message" rows="3"></textarea>
+      <textarea class="form-control" id="message" rows="3" name="message"></textarea>
     </div>
     <div class="col-md-12">
       <button type="submit" class="btn btn-danger"><b>Envoyer</b> <i class="fa fa-paper-plane"></i></button>
@@ -326,6 +328,32 @@
       mirror: false
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('secondForm');  // Assurez-vous que l'ID correspond à votre formulaire
+      
+      form.addEventListener('submit', async function (event) {
+          event.preventDefault();  // Empêche la soumission normale du formulaire
+  
+          // Effectuer une requête AJAX pour soumettre le formulaire
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+              method: 'POST',
+              body: formData,
+          });
+  
+          if (response.ok) {
+              const result = await response.json();
+              if (result.success) {
+                  // Afficher le message dans une boîte de dialogue modale
+                  alert(result.message);
+              }
+          }
+      });
+  });
+  </script>
+  
 
 <script>
 window.addEventListener('scroll', function() {

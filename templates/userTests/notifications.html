@@ -1,0 +1,26 @@
+{% extends 'userTests/base.html' %}
+
+{% load static%}
+
+
+{% block title %} Notifications {% endblock title %}
+
+
+{% block content %}
+
+<h1>Notifications</h1>
+    {% if notifications %}
+    <ul>
+        {% for notification in notifications %}
+        <li>
+            <strong>{{ notification.message }}</strong>
+            <br>
+            <small>{{ notification.date }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Aucune nouvelle notification.</p>
+    {% endif %}
+
+{% endblock %}

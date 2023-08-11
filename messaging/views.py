@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Message
 from django.db import models
 from django.http import JsonResponse
+from notifications.models import Notification
 
 
 @login_required
@@ -19,16 +20,33 @@ def chat(request, receiver_username):
         (models.Q(sender=receiver) & models.Q(receiver=sender))
     ).order_by('date_created')  # Utilisation de 'date_created' pour trier par ordre chronologique
 
-    messages.update(is_read= True)
+#Creation d'une notification 
+    notif = None 
+    
+    for message in messages:
+        if not message.is_read:
+            notif = Notification.objects.create(
+                user=sender,
+                message=message,
+                notification=f'Nouveau message de {sender.username}',
+                date=message.date_created
+            )
+    
+    messages.update(is_read=True)
+
 
     context = {
         'receiver_username': receiver_username,
         'user': sender,
         'messages': messages,
+        'notif': notif,
     }
     return render(request, 'userTests/chat.html', context)
 
-#Choix de l'association pour entamer une discussion
+# Fin du view-------------
+
+
+# Choix de l'association pour entamer une discussion
 @login_required
 def choiceSender(request):
 
@@ -37,7 +55,11 @@ def choiceSender(request):
 
     return render(request, 'userTests/users_list.html', {'associations': associations})
 
+# Fin du view-------------
 
+
+# Vue pour verifier les nouveaux messages
+@login_required
 def get_messages(request, receiver_username):
 
     sender = request.user
@@ -61,12 +83,4 @@ def get_messages(request, receiver_username):
     # Renvoyer les messages au format JSON
     return JsonResponse({'messages': messages_list})
 
-
-
-
-# @login_required
-# def mark_message_as_read(request, message_id):
-#     message = get_object_or_404(Message, id=message_id, receiver=request.user)
-#     message.is_read = True
-#     message.save()
-#     return JsonResponse({'success': True})
+# Fin du view-------------

@@ -21,6 +21,7 @@ urlpatterns = [
     path('associations', views.associations, name="associations"),
     path('actu', views.actu, name="actu"),
     path('edit_profil/<int:user_id>', views.edit_profil, name="edit_profil"),
+    path('contact', views.contact, name="contact"),
    
 
     # path('deleteConfirm/<int:posts_id>',deleteConfirm, name="deleteConfirm"),

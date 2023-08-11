@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "aide",
     "django_bootstrap5",
     "messaging",
+    "notifications",
 
 
 ]
@@ -115,6 +116,13 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'gueyezackaria139@gmail.com'
+EMAIL_HOST_PASSWORD = 'gikizgeugbmidqgo'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 # DATABASES = {

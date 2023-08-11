@@ -27,6 +27,14 @@
                     <div class="card-header bg-primary text-white">
                         Chat
                     </div>
+
+                    <div id="notification-container">
+                        {% if notif %}
+                            <div class="notification">{{ notif.notification }}</div>
+                        {% endif %}
+                    </div>
+                    
+
                     <div class="card-body">
                         <div class="chat-log" id="chat-log">
                             {% for message in messages %}
@@ -79,6 +87,17 @@
             const messageElement = document.createElement('div');
             messageElement.textContent = `${sender}: ${message}`;
             document.getElementById('chat-log').appendChild(messageElement);
+
+
+            //Notification affichage
+            if (notification) {
+        const notificationContainer = document.getElementById('notification-container');
+        const notificationDiv = document.createElement('div');
+        notificationDiv.classList.add('notification');
+        notificationDiv.innerText = notification;
+        notificationContainer.appendChild(notificationDiv);
+    }
+
         };
     
         chatSocket.onclose = function(e) {

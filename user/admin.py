@@ -41,3 +41,6 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SubCategory, SubCategoryAdmin)
+
+
+admin.site.register(Contact)

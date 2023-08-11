@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
@@ -10,6 +10,11 @@ from actualite.models import Post
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
+from django.conf import settings
+from user.models import Contact
+
+# Vue de la page d'accueil
 
 
 def accueil(request):
@@ -21,12 +26,14 @@ def accueil(request):
         'posts': posts,
         'assos': assos,
         'categorie': categorie,
-        # 'posts':posts_search,
     }
     return render(request, 'userTests/accueil.html', context)
 
+# ------------ FIN ---------------
 
 # login for association
+
+
 def user_login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -190,8 +197,11 @@ def sign_upp(request):
 
     return render(request, 'userTests/register2.html', context)
 
+# ---------------Fin-----------------
 
 # login for demander
+
+
 def user_login2(request):
     if request.method == 'POST':
         nomUser = request.POST.get('nomUser')
@@ -215,6 +225,9 @@ def user_login2(request):
         return redirect('accueil')
 
     return render(request, 'userTests/user_login2.html', {})
+
+# ---------------Fin-----------------
+
 # deconnexion
 
 
@@ -222,8 +235,11 @@ def log_out(request):
     logout(request)
     return redirect('accueil')
 
+# ---------------Fin-----------------
 
 # Affichage actualite
+
+
 def news(request):
     posts = Post.objects.all()
     context = {
@@ -231,6 +247,7 @@ def news(request):
 
     }
     return render(request, 'userTests/news.html', {})
+# ---------------Fin-----------------
 
 
 # Ajouter actualite
@@ -249,9 +266,11 @@ def getNews(request):
         posts.save()
 
     return redirect('/')
-
+# ---------------Fin-----------------
 
 # supprimer actualite @login_required(login_url='/login')
+
+
 @login_required(login_url='/user_login')
 def actu_delete(request, posts_id):
     posts_id = int(posts_id)
@@ -261,7 +280,7 @@ def actu_delete(request, posts_id):
         return redirect('accueil')
     posts.delete()
     return redirect('accueil')
-
+# ---------------Fin-----------------
 
 # @login_required(login_url='/user_login')
 # def deleteConfirm(request, post_id):
@@ -305,6 +324,7 @@ def updateActu(request, post_id):
     }
     return render(request, 'userTests/accueil.html', context)
 
+# ---------------Fin-----------------
 
 # Search Bar
 # def searchEtiquette(request):
@@ -336,6 +356,9 @@ def updateActu(request, post_id):
 #         'result': result
 #     }
 #     return render(request, 'userTests/searchView.html', context)
+
+
+# Search Association
 def searchEtiquette(request):
     search_query = request.GET.get('search')
     associations = Association.objects.all()
@@ -347,7 +370,7 @@ def searchEtiquette(request):
             Q(user__username__icontains=search_query) |
             Q(category__name__icontains=search_query) |
             Q(category__subcategories__name__icontains=search_query)
-        )
+        ).distinct
 
     context = {
         'associations': associations,
@@ -358,6 +381,10 @@ def searchEtiquette(request):
 
     return render(request, 'userTests/searchView.html', context)
 
+# ---------------Fin-----------------
+
+# Voir une actualite full
+
 
 def post_detail(request, post_id):
     post_id = int(post_id)
@@ -366,6 +393,10 @@ def post_detail(request, post_id):
         'post': post,
     }
     return render(request, 'userTests/post_details.html', context)
+
+# ---------------Fin-----------------
+
+# Page de tout les associations
 
 
 def associations(request):
@@ -379,6 +410,8 @@ def associations(request):
 
     return render(request, 'userTests/associations.html', context)
 
+# ---------------Fin-----------------
+
 
 def actu(request):
     actu = Post.objects.all()
@@ -391,6 +424,7 @@ def actu(request):
     return render(request, 'userTest/actu.html', context)
 
 
+# Modifier profile
 @login_required
 def edit_profil(request, user_id):
 
@@ -433,6 +467,8 @@ def edit_profil(request, user_id):
     }
     return render(request, 'userTests/edit_profil.html', context)
 
+# ---------------Fin-----------------
+
  #     name = request.POST.get('name', None)
     #     print(name)
     #     email = request.POST.get('email', None)
@@ -466,9 +502,46 @@ def edit_profil(request, user_id):
 #     return render(request, 'userTests/edit_profil.html', context)
 
 
+# Toutes les demandes d'aides
 def helping(request):
     categorie = Category.objects.all()
     context = {
         'categorie': categorie
     }
     return render(request, 'userTests/demande_aide.html', context)
+
+# ---------------Fin-----------------
+
+
+# Formulaire de Contact
+def contact(request):
+
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        number = request.POST.get('numero')
+        content = request.POST.get('message')
+
+        contact_entry = Contact.objects.create(
+            firstName=first_name,
+            lastName=last_name,
+            email=email,
+            number=number,
+            content=content
+        )
+        contact_entry.save()
+
+        subject = 'Mbollo Moy Dolle Confirmation de reception de votre message de Contact'
+        message = f"Bonjour {first_name}, \n\nNous avons bien recu votre message, une reponse vous sera communiqué prochainement. \n\nMerci..."
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [email]
+
+        send_mail(subject, message, from_email, recipient_list)
+        
+
+        return JsonResponse({'success': True, 'message': 'Message envoyé avec succès.'})
+
+    return redirect('accueil')
+
+# ---------------Fin-----------------

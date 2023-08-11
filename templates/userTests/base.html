@@ -69,6 +69,24 @@
                         <a href="#" class="nav-link border-hover py-2 text-dark">Contact Us</a>
                     </li>
                     {% if user.is_authenticated %}
+                    <div class="dropdown-center">
+                      <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Notifications
+                      </button>
+                      <ul class="dropdown-menu">
+                        {% for notification in user_notifications %}
+                        <li>
+                          <a class="dropdown-item" href="#">
+                            {{ notification.content }}
+                            {% if not notification.is_read %}
+                              <span class="badge bg-primary">Nouveau</span>
+                            {% endif %}
+                          </a>
+                        </li>
+                      {% endfor %}
+                      </ul>
+                    </div>
+       
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle border-hover" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Compte <b class="text-uppercase"> {{request.user}} </b> <i class="fa-solid fa-gear"></i>

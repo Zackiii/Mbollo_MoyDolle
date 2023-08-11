@@ -11,5 +11,6 @@ urlpatterns = [
     path('signalerArnaque/<int:aide_id>',
          views.signalerArnaque, name="signalerArnaque"),
     path('dashboard', views.dashboard, name='dashboard'),
+#     path('notifications/', views.view_notifications, name='view_notifications'),
 
 ]
